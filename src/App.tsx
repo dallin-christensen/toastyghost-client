@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route path='/room/:id' element={<Room />} />
+          <Route path='/room/:roomId' element={<Room />} />
         </Routes>
       </Router>
     </RoomProvider>

@@ -12,6 +12,7 @@ type RoomContextType = {
   // getParticipants: () => ParticipantType[]
   // getParticipant: () => ParticipantType
   // getLatestMessage: () => MessageType
+  setRoom: (room: RoomType) => void
   room: RoomType | null
 }
 
@@ -42,6 +43,7 @@ export function RoomProvider({ children }: RoomProviderProps) {
         leaveRoom,
         insertParticipant,
         insertMessage,
+        setRoom,
         room,
       }}
     >
