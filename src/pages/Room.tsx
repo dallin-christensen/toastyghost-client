@@ -1,7 +1,10 @@
 import { useRoom } from "../context/RoomContext"
 import useSetRoom from "../hooks/useSetRoom"
+import PostMessageInput from "../components/PostMessageInput"
+
 
 function Room() {
+
   useSetRoom()
 
   const {
@@ -9,7 +12,10 @@ function Room() {
   } = useRoom()
 
   return (
-    <pre>{JSON.stringify(room, undefined, 2)}</pre>
+    <>
+      <pre>{JSON.stringify(room, undefined, 2)}</pre>
+      <PostMessageInput />
+    </>
   )
 }
 
