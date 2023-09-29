@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import socket from "../socket";
 import { useParams } from "react-router-dom";
+import { useCurrentUser } from "../context/UserContext";
 
 function useSocketConnect() {
   const { roomId = "" } = useParams()
+  const { currentUser } = useCurrentUser()
   const [socketConnected, setSocketConnected] = useState<boolean>(socket.connected);
 
   useEffect(() => {
     function onConnect() {
       console.log('socket connected')
       setSocketConnected(true);
-      socket.emit("subscribe", roomId);
+      socket.emit("subscribe", roomId, currentUser?._id);
     }
 
     function onDisconnect() {
