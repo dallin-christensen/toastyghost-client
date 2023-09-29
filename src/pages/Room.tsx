@@ -4,6 +4,7 @@ import PostMessageInput from "../components/PostMessageInput"
 import useSocketConnect from "../hooks/useSocketConnect"
 import { useCurrentUser } from "../context/UserContext"
 import currentUserInRoom from "../utilities/currentUserInRoom"
+import JoinRoomForm from "../components/JoinRoomForm"
 
 function Room() {
 
@@ -26,7 +27,7 @@ function Room() {
             <PostMessageInput />
           </>
         ) : (
-          <div>join room?</div>
+          <JoinRoomForm />
         )
 }
 

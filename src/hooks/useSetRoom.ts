@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch"
 import { useRoom } from "../context/RoomContext"
 import { useEffect } from "react"
 import socket from "../socket"
+import { useCurrentUser } from "../context/UserContext"
 
 function useSetRoom() {
   const { roomId = "" } = useParams()
@@ -11,6 +12,7 @@ function useSetRoom() {
   const {
     setRoom,
   } = useRoom()
+  const { setCurrentUser } = useCurrentUser()
 
   useEffect(() => {
     if (data?._id) {
@@ -19,6 +21,11 @@ function useSetRoom() {
   }, [data?._id])
 
   socket.on('messageinserted', (room) => {
+    setRoom(room)
+  });
+
+  socket.on('roomjoined', ({room, participant}) => {
+    setCurrentUser(participant)
     setRoom(room)
   });
 }
