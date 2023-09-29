@@ -7,6 +7,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { CurrentUserProvider } from "./context/UserContext"
+import CssBaseline from '@mui/material/CssBaseline';
+import './app.css'
 
 const queryClient = new QueryClient()
 
@@ -15,12 +17,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <CurrentUserProvider>
         <RoomProvider>
-          <Router>
-            <Routes>
-              <Route path='/' element={<Landing />} />
-              <Route path='/room/:roomId' element={<Room />} />
-            </Routes>
-          </Router>
+          <CssBaseline>
+            <Router>
+              <Routes>
+                <Route path='/' element={<Landing />} />
+                <Route path='/room/:roomId' element={<Room />} />
+              </Routes>
+            </Router>
+          </CssBaseline>
         </RoomProvider>
       </CurrentUserProvider>
     </QueryClientProvider>
