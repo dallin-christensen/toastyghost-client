@@ -1,6 +1,10 @@
+import CreateNewRoomForm from "../components/CreateNewRoomForm"
+
 function Landing() {
   return (
-    <div>Landing</div>
+    <div>
+      <CreateNewRoomForm />
+    </div>
   )
 }
 
