@@ -1,10 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { Button, Form, Input } from 'antd';
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 import RoomType from '../data/types/RoomType';
 import ParticipantType from '../data/types/ParticipantType';
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from '../context/UserContext';
+import fetchWithHeaders from '../utilities/fetchWithHeaders';
 
 type FieldType = {
   roomName?: string;
@@ -19,27 +20,15 @@ function CreateNewRoomForm() {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      return await fetch("http://localhost:8082/api/rooms/createroom", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          name: roomName,
+      return await fetchWithHeaders("http://localhost:8082/api/rooms/createroom", {
+        name: roomName,
           participants: [
             {
               avatar: "avatarblah",
               handle: username
             }
           ]
-        })
       })
-      .then((response) => response.json())
-      // traditionally we'd be expecting a JSON formatted response, so we would change this method to .json instead of .text
-      .catch((err) => {
-        console.error(err);
-      });
     },
     onSuccess: ({room, participant}: { room: RoomType, participant: ParticipantType }) => {
       if (room?._id) {
@@ -49,8 +38,7 @@ function CreateNewRoomForm() {
     },
   })
 
-  const onFinish = (e: SyntheticEvent) => {
-    e.preventDefault
+  const onFinish = () => {
     mutation.mutate()
   }
 

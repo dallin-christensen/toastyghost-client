@@ -1,7 +1,12 @@
 import { Button, Form, Input } from 'antd';
 import { useState } from 'react';
-import socket from "../socket"
+import RoomType from '../data/types/RoomType';
+import ParticipantType from '../data/types/ParticipantType';
 import { useParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import fetchWithHeaders from '../utilities/fetchWithHeaders';
+import { useCurrentUser } from '../context/UserContext';
+import { useRoom } from '../context/RoomContext';
 
 type FieldType = {
   roomName?: string;
@@ -11,15 +16,30 @@ type FieldType = {
 function JoinRoomForm() {
   const [username, setUsername] = useState("")
   const { roomId } = useParams()
+  const { setCurrentUser } = useCurrentUser()
+  const { setRoom } = useRoom()
+
+  const mutation = useMutation({
+    mutationFn: async () => {
+      return await fetchWithHeaders("http://localhost:8082/api/rooms/joinRoom", {
+        roomId,
+        participant: {
+          avatar: "avatarblah",
+          handle: username
+        }
+      })
+    },
+    onSuccess: ({room, participant}: { room: RoomType, participant: ParticipantType }) => {
+      if (room?._id) {
+        setCurrentUser(participant)
+        setRoom(room)
+      }
+    },
+  })
+
 
   const onFinish = () => {
-    socket.emit('joinroom', {
-      roomId: roomId,
-      participant: {
-        avatar: "blah",
-        handle: username,
-      },
-    })
+    mutation.mutate()
   }
 
   const onFinishFailed = () => {

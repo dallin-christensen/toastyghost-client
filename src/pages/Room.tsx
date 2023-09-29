@@ -1,15 +1,13 @@
 import { useRoom } from "../context/RoomContext"
-import useSetRoom from "../hooks/useSetRoom"
-import PostMessageInput from "../components/PostMessageInput"
-import useSocketConnect from "../hooks/useSocketConnect"
+import useFetchRoom from "../hooks/useFetchRoom"
 import { useCurrentUser } from "../context/UserContext"
 import currentUserInRoom from "../utilities/currentUserInRoom"
 import JoinRoomForm from "../components/JoinRoomForm"
+import SubscribedRoom from "../components/SubscribedRoom"
 
 function Room() {
 
-  useSetRoom()
-  useSocketConnect()
+  useFetchRoom()
 
   const { currentUser } = useCurrentUser()
 
@@ -17,15 +15,12 @@ function Room() {
     room
   } = useRoom()
 
-  if (!room || !currentUser) return null
+  if (!room) return null
 
-  const currentUserIsParticipant = currentUserInRoom(currentUser, room)
+  const currentUserIsParticipant = currentUserInRoom(currentUser ?? undefined, room)
 
   return currentUserIsParticipant ? (
-          <>
-            <pre>{JSON.stringify(room, undefined, 2)}</pre>
-            <PostMessageInput />
-          </>
+          <SubscribedRoom />
         ) : (
           <JoinRoomForm />
         )
