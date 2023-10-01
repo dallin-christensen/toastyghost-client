@@ -4,6 +4,7 @@ import { useCurrentUser } from "../context/UserContext"
 import currentUserInRoom from "../utilities/currentUserInRoom"
 import JoinRoomForm from "../components/JoinRoomForm"
 import SubscribedRoom from "../components/SubscribedRoom"
+import Header from "../components/Header"
 
 function Room() {
 
@@ -19,11 +20,16 @@ function Room() {
 
   const currentUserIsParticipant = currentUserInRoom(currentUser ?? undefined, room)
 
-  return currentUserIsParticipant ? (
-          <SubscribedRoom />
-        ) : (
-          <JoinRoomForm />
-        )
+  return (
+    <>
+      <Header withLogo />
+      {
+        currentUserIsParticipant
+          ? <SubscribedRoom />
+          : <JoinRoomForm />
+      }
+    </>
+  )
 }
 
 export default Room

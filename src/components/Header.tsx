@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material"
 import { useRoom } from "../context/RoomContext"
 import styled from '@emotion/styled'
+import Logo from "./Logo"
 
 const Wrapper = styled(Box)`
   display: flex;
@@ -9,10 +10,18 @@ const Wrapper = styled(Box)`
   padding: .5em;
 `
 
-function Header() {
+type HeaderProps = {
+  withLogo?: boolean
+}
+
+function Header({ withLogo = false }: HeaderProps) {
   const { room } = useRoom()
   return (
     <Wrapper>
+      {
+        withLogo
+          && <Logo size='small' />
+      }
       <Typography variant="h2">Ghost Toast</Typography>
       {
         room?.name

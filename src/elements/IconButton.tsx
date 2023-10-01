@@ -6,20 +6,6 @@ const StyledMuiButton = styled(MuiIconButton)`
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
   }
-
-  transition-duration: .5s;
-  transition-property: transform;
-  transform: translateZ(0);
-
-  &:hover {
-    transform: translateY(-4px);
-    animation-name: hover;
-    animation-duration: 1.5s;
-    animation-delay: 0.3s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
 `
 
 type Additional = {
