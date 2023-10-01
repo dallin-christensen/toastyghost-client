@@ -16,3 +16,12 @@ body {
   display: flex;
   flex-direction:column
 }
+
+@keyframes hover {
+  50% {
+    transform: translateY(-1px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}

@@ -82,7 +82,7 @@ function JoinRoomForm() {
     <Wrapper>
       <form onSubmit={onFinish}>
         <WithinForm>
-          <Typography variant='h4' sx={{ color: 'primary.main' }}>Join Room</Typography>
+          <Typography variant='h3'  sx={{ color: 'primary.main', marginBottom: "2rem" }}>Join Room</Typography>
           <TextInput label="User Nickname" value={username} onChange={e => updateUsername(e.target.value)} error={!!usernameError} helperText={usernameError} />
           <Button type="submit">Submit</Button>
         </WithinForm>
