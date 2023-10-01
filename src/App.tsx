@@ -1,6 +1,3 @@
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom"
-import Landing from "./pages/Landing"
-import Room from "./pages/Room"
 import { RoomProvider } from "./context/RoomContext"
 import {
   QueryClient,
@@ -9,8 +6,8 @@ import {
 import { CurrentUserProvider } from "./context/UserContext"
 import './app.css'
 import MuiProvider from "./styles/MuiProvider"
-import Header from "./components/Header"
-
+import AppBase from "./components/AppBase"
+import { SnackbarProvider } from "./context/SnackbarContext"
 
 const queryClient = new QueryClient()
 
@@ -19,17 +16,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <CurrentUserProvider>
         <RoomProvider>
-          <MuiProvider>
-            <>
-              <Header />
-              <Router>
-                <Routes>
-                  <Route path='/' element={<Landing />} />
-                  <Route path='/room/:roomId' element={<Room />} />
-                </Routes>
-              </Router>
-            </>
-          </MuiProvider>
+          <SnackbarProvider>
+            <MuiProvider>
+              <AppBase />
+            </MuiProvider>
+          </SnackbarProvider>
         </RoomProvider>
       </CurrentUserProvider>
     </QueryClientProvider>

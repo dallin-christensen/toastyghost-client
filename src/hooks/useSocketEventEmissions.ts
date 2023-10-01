@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import socket from "../socket"
+import { useSnackbar } from "../context/SnackbarContext"
 
 type InsertMessageArgs = {
   roomId: string
@@ -10,6 +11,10 @@ type InsertMessageArgs = {
 function useSocketEventEmissions() {
   const navigate = useNavigate()
 
+  const {
+    triggerSnackbar
+  } = useSnackbar()
+
   const emitInsertMessage = ({ roomId, participantId, text }: InsertMessageArgs) => {
     socket.emit('insertmessage', {
       roomId,
@@ -19,7 +24,7 @@ function useSocketEventEmissions() {
   }
 
   const emitDisconnect = () => {
-    // TODO deploy toast
+    triggerSnackbar('Successfully left room')
     socket.emit('leaveroom')
     navigate("/")
   }
