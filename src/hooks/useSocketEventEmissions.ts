@@ -8,6 +8,13 @@ type InsertMessageArgs = {
   text: string
 }
 
+type UpdateCoordinatesArgs = {
+  roomId: string
+  participantId: string
+  x: number
+  y: number
+}
+
 function useSocketEventEmissions() {
   const navigate = useNavigate()
 
@@ -23,6 +30,15 @@ function useSocketEventEmissions() {
     })
   }
 
+  const emitUpdateCoordinates = ({ roomId, participantId, x, y }: UpdateCoordinatesArgs) => {
+    socket.emit('updatecoordinates', {
+      roomId,
+      participantId,
+      x,
+      y
+    })
+  }
+
   const emitDisconnect = () => {
     triggerSnackbar('Successfully left room')
     socket.emit('leaveroom')
@@ -32,6 +48,7 @@ function useSocketEventEmissions() {
   return {
     emitInsertMessage,
     emitDisconnect,
+    emitUpdateCoordinates,
   }
 }
 

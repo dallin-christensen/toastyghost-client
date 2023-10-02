@@ -10,12 +10,11 @@ import Button from '../elements/Button';
 import TextInput from '../elements/TextInput';
 import { Box, Typography } from '@mui/material';
 import styled from '@emotion/styled'
+import ExteriorPageTemplate from './ExteriorPageTemplate';
 
 const Wrapper = styled(Box)`
-  height: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 200px;
 `
 
 const WithinForm = styled(Box)`
@@ -79,15 +78,17 @@ function JoinRoomForm() {
   }
 
   return (
-    <Wrapper>
-      <form onSubmit={onFinish}>
-        <WithinForm>
-          <Typography variant='h3'  sx={{ color: 'primary.main', marginBottom: "2rem" }}>Join Room</Typography>
-          <TextInput label="User Nickname" value={username} onChange={e => updateUsername(e.target.value)} error={!!usernameError} helperText={usernameError} />
-          <Button type="submit">Submit</Button>
-        </WithinForm>
-      </form>
-    </Wrapper>
+    <ExteriorPageTemplate>
+      <Wrapper>
+        <form onSubmit={onFinish}>
+          <WithinForm>
+            <Typography variant='h3'  sx={{ color: 'primary.main', marginBottom: "2rem" }}>Join Room</Typography>
+            <TextInput autoFocus label="User Nickname" value={username} onChange={e => updateUsername(e.target.value)} error={!!usernameError} helperText={usernameError} />
+            <Button type="submit">Submit</Button>
+          </WithinForm>
+        </form>
+      </Wrapper>
+    </ExteriorPageTemplate>
   )
 }
 

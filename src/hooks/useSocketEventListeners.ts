@@ -20,6 +20,10 @@ function useSocketEventListeners() {
     setRoom(room)
   });
 
+  socket.on('coordinatesupdated', (room) => {
+    setRoom(room)
+  });
+
   socket.on('joinedroom', (room, participantId) => {
     const participant = findParticipantById(room, participantId)
 

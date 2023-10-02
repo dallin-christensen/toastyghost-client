@@ -22,7 +22,7 @@ function Header({ withLogo = false }: HeaderProps) {
         withLogo
           && <Logo size='small' />
       }
-      <Typography variant="h2">Ghost Toast</Typography>
+      <Typography variant="h2">toastyGhost</Typography>
       {
         room?.name
           && (

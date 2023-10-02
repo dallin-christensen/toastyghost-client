@@ -5,6 +5,8 @@ type ParticipantType = {
     avatar: string
     handle: string
     latestMessage?: MessageType
+    x: number
+    y: number
 }
 
 export default ParticipantType
