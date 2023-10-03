@@ -92,7 +92,7 @@ function CreateNewRoomForm() {
     <Wrapper>
       <form onSubmit={onFinish}>
         <WithinForm>
-          <Typography variant='h3' sx={{ color: 'primary.main', marginBottom: "2rem" }}>Create New Room</Typography>
+          <Typography variant='h3' sx={{ color: 'primary.main', marginBottom: "2rem", fontWeight: 400 }}>Create New Room</Typography>
           <TextInput autoFocus label="Room Name" value={roomName} onChange={e => updateRoomName(e.target.value)} error={!!roomError} helperText={roomError} />
           <TextInput label="User Nickname" value={username} onChange={e => updateUsername(e.target.value)} error={!!usernameError} helperText={usernameError} />
           <Button type="submit">Submit</Button>

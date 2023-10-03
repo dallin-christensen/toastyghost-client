@@ -14,8 +14,8 @@ const AvatarContainer = styled.div`
 `
 const BubbleContainer = styled.div`
   position: absolute;
-  bottom: 46px;
-  left: 4px;
+  bottom: 58px;
+  left: 0px;
   z-index: 0;
 `
 
@@ -26,11 +26,16 @@ type AvatarProps = {
 function Avatar({ participant: p }: AvatarProps) {
   return (
     <Hitbox>
-      <BubbleContainer>
-        <ChatBubble text={p.latestMessage?.text ?? ""} />
-      </BubbleContainer>
+      {
+        p.latestMessage
+          && (
+            <BubbleContainer>
+              <ChatBubble message={p.latestMessage} />
+            </BubbleContainer>
+          )
+      }
       <AvatarContainer>
-        <Avvvatars value={p.handle} size={32} border borderSize={2} />
+        <Avvvatars value={p.handle} size={40} border borderSize={2} />
       </AvatarContainer>
     </Hitbox>
   )
