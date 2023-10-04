@@ -113,3 +113,16 @@ body {
   -webkit-animation-name: toastdown;
   animation-name: toastdown;
 }
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 153, 255, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 153, 255, 0);
+  }
+}
+
+.pulse-animation {
+  animation: pulse-animation 2s infinite;
+}
