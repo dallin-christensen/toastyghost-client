@@ -59,17 +59,15 @@ function ChatBubble({ message }: ChatBubbleProps) {
   const { text, _id, participantId } = message
 
   const { currentUser } = useCurrentUser()
-  const [displayText, setDisplayText] = useState(false)
+  const [displayText, setDisplayText] = useState(true)
 
   useEffect(() => {
     const displayMessageMs = text.length * 100 < 5000 ? 5000 : text.length * 100
 
-    if (text) {
-      setDisplayText(true)
-      var timeout = setTimeout(() => {
-        setDisplayText(false)
-      }, displayMessageMs)
-    }
+    setDisplayText(true)
+    const timeout = setTimeout(() => {
+      setDisplayText(false)
+    }, displayMessageMs)
 
     return () => {
       if (timeout) {

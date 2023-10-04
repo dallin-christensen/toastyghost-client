@@ -17,7 +17,9 @@ const OutterCircle = styled.div<OutterCircleProps>`
   align-items: center;
   justify-content: center;
   height: ${(props) => props.size * 18}px;
+  min-height: ${(props) => props.size * 18}px;
   width: ${(props) => props.size * 18}px;
+  min-width: ${(props) => props.size * 18}px;
   border-radius: ${(props) => props.size * 9}px;
 
   .dark {

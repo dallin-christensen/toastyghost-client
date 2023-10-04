@@ -10,6 +10,12 @@ function Canvas() {
   const { emitUpdateCoordinates } = useSocketEventEmissions()
 
   const onClick = (e: MouseEvent) => {
+    const actionPaper = document.querySelector('.action-paper')
+
+    const target = e.target as Node
+
+    if (actionPaper && actionPaper.contains(target)) return
+
     if (room?._id && currentUser?._id) {
       emitUpdateCoordinates({ roomId: room._id, participantId: currentUser._id, x: e.clientX, y: e.clientY })
     }
@@ -22,10 +28,10 @@ function Canvas() {
   const { participants } = room
 
   return (
-    <div style={{ backgroundColor: 'red', height: '100%', width: '100%' }}>
+    <div style={{ height: '100%', width: '100%' }}>
       {
         participants.map((p) => (
-          <MotionAvatar participant={p} />
+          <MotionAvatar participant={p} key={p._id} />
         ))
       }
     </div>

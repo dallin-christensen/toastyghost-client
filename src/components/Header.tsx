@@ -22,11 +22,11 @@ function Header({ withLogo = false }: HeaderProps) {
         withLogo
           && <Logo size='small' />
       }
-      <Typography variant="h2">toastyGhost</Typography>
+      <Typography variant="h2" sx={{ userSelect: "none" }}>toastyGhost</Typography>
       {
         room?.name
           && (
-            <Typography variant="h4" sx={{ color: 'primary.main' }}>{room?.name?.toUpperCase()}</Typography>
+            <Typography variant="h4" sx={{ color: 'primary.main', userSelect: "none" }}>{room?.name?.toUpperCase()}</Typography>
           )
       }
     </Wrapper>
