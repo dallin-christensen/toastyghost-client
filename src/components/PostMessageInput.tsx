@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import debounce from "../utilities/debounce"
 import { useRoom } from "../context/RoomContext"
 import { useCurrentUser } from "../context/UserContext"
@@ -7,10 +7,13 @@ import IconButton from "../elements/IconButton"
 import SendIcon from '@mui/icons-material/Send';
 import { Tooltip } from "@mui/material"
 import useSocketEventEmissions from "../hooks/useSocketEventEmissions"
+import { useEventListener } from "usehooks-ts"
 
 function PostMessageInput() {
   const [messageVal, setMessageVal] = useState('')
   const [messageValError, setMessageValError] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
   const { room } = useRoom()
   const { currentUser } = useCurrentUser()
 
@@ -29,7 +32,7 @@ function PostMessageInput() {
     setMessageVal("")
   })
 
-  const handleEnter = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && messageVal.length) {
       handlePostMessage()
     }
@@ -44,24 +47,34 @@ function PostMessageInput() {
     }
   }
 
+  const keydownListener = (e: KeyboardEvent) => {
+    const isFocusedOnInput = document.activeElement === inputRef.current
+
+    if (e.key === '/' && !isFocusedOnInput) {
+      inputRef.current?.focus()
+      e.preventDefault()
+    }
+  }
+
+  useEventListener('keydown', keydownListener)
+
   return (
     <>
       <TextInput
         autoFocus
-        label="message"
+        label={"message - Press \"/\" to auto-focus"}
         value={messageVal}
         onChange={e => handleSetMessage(e.target.value)}
-        onKeyDown={handleEnter}
+        onKeyDown={handleKeyDown}
         error={!!messageValError}
         helperText={messageValError}
         sx={{ maxWidth: 400 }}
+        inputRef={inputRef}
       />
       <Tooltip title="send message" placement="top" arrow>
-        <div>
-          <IconButton onClick={handlePostMessage} disabled={!messageVal}>
-            <SendIcon />
-          </IconButton>
-        </div>
+        <IconButton onClick={handlePostMessage} disabled={!messageVal}>
+          <SendIcon />
+        </IconButton>
       </Tooltip>
     </>
   )
