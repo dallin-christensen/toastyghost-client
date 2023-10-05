@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import fetchWithHeaders from '../utilities/fetchWithHeaders';
 import { useCurrentUser } from '../context/UserContext';
-import { useRoom } from '../context/RoomContext';
 import Button from '../elements/Button';
 import TextInput from '../elements/TextInput';
 import { Box, Typography } from '@mui/material';
@@ -32,7 +31,6 @@ function JoinRoomForm() {
   const [usernameError, setUsernameError] = useState("")
   const { roomId } = useParams()
   const { setCurrentUser } = useCurrentUser()
-  const { setRoom } = useRoom()
   const { triggerSnackbar } = useSnackbar()
 
   const mutation = useMutation({
@@ -46,7 +44,7 @@ function JoinRoomForm() {
       }).catch(() => console.log('in catch block'))
     },
     onSuccess: ({room, participant, errors}: { room: RoomType, participant: ParticipantType, errors: Error[] }) => {
-      if (errors.length) {
+      if (errors?.length) {
         if (errors[0].message === 'room does not exist') {
           triggerSnackbar('room does not exist', 'error')
         } else {
@@ -57,9 +55,7 @@ function JoinRoomForm() {
 
       if (room?._id) {
         setCurrentUser(participant)
-        setRoom(room)
       }
-
     },
     onError: () => {
       triggerSnackbar('an error occurred', 'error')

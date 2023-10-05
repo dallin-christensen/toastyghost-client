@@ -1,21 +1,42 @@
 import { useRoom } from "../context/RoomContext"
-import useFetchRoom from "../hooks/useFetchRoom"
 import { useCurrentUser } from "../context/UserContext"
-import currentUserInRoom from "../utilities/currentUserInRoom"
 import JoinRoomForm from "../components/JoinRoomForm"
 import SubscribedRoom from "../components/SubscribedRoom"
+import { useQuery } from "@tanstack/react-query"
+import fetchWithHeaders from "../utilities/fetchWithHeaders"
+import { useParams } from "react-router-dom"
+import { useState } from "react"
 
 function Room() {
-
-  useFetchRoom()
+  const [grantAccess, setGrantAccess] = useState(false)
+  const { roomId = "" } = useParams()
 
   const { currentUser } = useCurrentUser()
 
-  const { room } = useRoom()
+  const { setRoom } = useRoom()
 
-  const currentUserIsParticipant = currentUserInRoom(currentUser ?? undefined, room ?? undefined)
+  const { isLoading } = useQuery({
+    queryKey: ['participantroomlookup', currentUser?._id],
+    queryFn: async () => {
+      return await fetchWithHeaders("http://localhost:8082/api/rooms/participantroomlookup", {
+        roomId,
+        participantId: currentUser?._id ?? "" //TODO fix this, the request should never happen if user is not set
+      })
+    },
+    onSuccess: (response: any) => {
+      if (typeof response !== 'string') {
+        if (response._id) {
+          setRoom(response)
+          setGrantAccess(true)
+        }
+      }
+    },
+    enabled: !!currentUser?._id,
+  })
 
-  return currentUserIsParticipant
+  if (isLoading) return <div>is loading....</div>
+
+  return grantAccess
           ? <SubscribedRoom />
           : <JoinRoomForm />
 }
