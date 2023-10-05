@@ -11,6 +11,7 @@ import TextInput from '../elements/TextInput';
 import { Box, Typography } from '@mui/material';
 import styled from '@emotion/styled'
 import ExteriorPageTemplate from './ExteriorPageTemplate';
+import { useSnackbar } from '../context/SnackbarContext';
 
 const Wrapper = styled(Box)`
   display: flex;
@@ -32,23 +33,37 @@ function JoinRoomForm() {
   const { roomId } = useParams()
   const { setCurrentUser } = useCurrentUser()
   const { setRoom } = useRoom()
+  const { triggerSnackbar } = useSnackbar()
 
   const mutation = useMutation({
     mutationFn: async () => {
-      return await fetchWithHeaders("http://localhost:8082/api/rooms/joinRoom", {
+      return await fetchWithHeaders("http://localhost:8082/api/rooms/joinroom", {
         roomId,
         participant: {
           avatar: "avatarblah",
           handle: username
         }
-      })
+      }).catch(() => console.log('in catch block'))
     },
-    onSuccess: ({room, participant}: { room: RoomType, participant: ParticipantType }) => {
+    onSuccess: ({room, participant, errors}: { room: RoomType, participant: ParticipantType, errors: Error[] }) => {
+      if (errors.length) {
+        if (errors[0].message === 'room does not exist') {
+          triggerSnackbar('room does not exist', 'error')
+        } else {
+          triggerSnackbar('an error occurred', 'error')
+        }
+        return
+      }
+
       if (room?._id) {
         setCurrentUser(participant)
         setRoom(room)
       }
+
     },
+    onError: () => {
+      triggerSnackbar('an error occurred', 'error')
+    }
   })
 
   const onFinish = (e: SyntheticEvent) => {

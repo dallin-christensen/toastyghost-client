@@ -11,13 +11,9 @@ function Room() {
 
   const { currentUser } = useCurrentUser()
 
-  const {
-    room
-  } = useRoom()
+  const { room } = useRoom()
 
-  if (!room) return null
-
-  const currentUserIsParticipant = currentUserInRoom(currentUser ?? undefined, room)
+  const currentUserIsParticipant = currentUserInRoom(currentUser ?? undefined, room ?? undefined)
 
   return currentUserIsParticipant
           ? <SubscribedRoom />
