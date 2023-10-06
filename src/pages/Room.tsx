@@ -6,16 +6,21 @@ import { useQuery } from "@tanstack/react-query"
 import fetchWithHeaders from "../utilities/fetchWithHeaders"
 import { useParams } from "react-router-dom"
 import { useState } from "react"
+import LoadingScreen from "../components/LoadingScreen"
+import RoomType from "../data/types/RoomType"
+
+type ResponseType = RoomType | string
 
 function Room() {
-  const [grantAccess, setGrantAccess] = useState(false)
   const { roomId = "" } = useParams()
-
   const { currentUser } = useCurrentUser()
+
+  const [grantAccess, setGrantAccess] = useState(false)
+  const [loading, setLoading] = useState(!!currentUser?._id) // only assume loading if current user is pupulated, because elsewise we skip the room lookup altogether
 
   const { setRoom } = useRoom()
 
-  const { isLoading } = useQuery({
+  useQuery({
     queryKey: ['participantroomlookup', currentUser?._id],
     queryFn: async () => {
       return await fetchWithHeaders("http://localhost:8082/api/rooms/participantroomlookup", {
@@ -23,22 +28,26 @@ function Room() {
         participantId: currentUser?._id ?? "" //TODO fix this, the request should never happen if user is not set
       })
     },
-    onSuccess: (response: any) => {
+    onSuccess: (response: ResponseType) => {
       if (typeof response !== 'string') {
         if (response._id) {
-          setRoom(response)
           setGrantAccess(true)
+          setRoom(response)
         }
       }
+      setLoading(false)
+    },
+    onError: () => {
+      setLoading(false)
     },
     enabled: !!currentUser?._id,
   })
 
-  if (isLoading) return <div>is loading....</div>
+  if (loading) return <LoadingScreen />
 
   return grantAccess
-          ? <SubscribedRoom />
-          : <JoinRoomForm />
+    ? <SubscribedRoom />
+    : <JoinRoomForm />
 }
 
 export default Room
