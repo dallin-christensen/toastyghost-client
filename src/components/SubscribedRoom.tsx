@@ -45,7 +45,7 @@ function SubscribedRoom() {
         <CanvasContainer>
           <Canvas />
         </CanvasContainer>
-        <ActionPaper elevation={8} className="action-paper">
+        <ActionPaper elevation={5} className="action-paper">
           <PostMessageInput />
           <RoomFooterActions />
         </ActionPaper>

@@ -25,7 +25,7 @@ function Room() {
     queryFn: async () => {
       return await fetchWithHeaders("http://localhost:8082/api/rooms/participantroomlookup", {
         roomId,
-        participantId: currentUser?._id ?? "" //TODO fix this, the request should never happen if user is not set
+        participantId: currentUser?._id
       })
     },
     onSuccess: (response: ResponseType) => {
