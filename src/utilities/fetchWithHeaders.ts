@@ -2,8 +2,10 @@ type BodyType = {
   [key: string]: unknown
 }
 
+const prependedUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8082'
+
 function fetchWithHeaders(url: string, body: BodyType, method?: string) {
-  return fetch(url, {
+  return fetch(prependedUrl + url, {
     method: method ?? "POST",
     headers: {
       "Content-Type": "application/json",

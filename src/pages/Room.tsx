@@ -23,7 +23,7 @@ function Room() {
   useQuery({
     queryKey: ['participantroomlookup', currentUser?._id],
     queryFn: async () => {
-      return await fetchWithHeaders("http://localhost:8082/api/rooms/participantroomlookup", {
+      return await fetchWithHeaders("/api/rooms/participantroomlookup", {
         roomId,
         participantId: currentUser?._id
       })

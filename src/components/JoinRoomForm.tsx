@@ -35,7 +35,7 @@ function JoinRoomForm() {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      return await fetchWithHeaders("http://localhost:8082/api/rooms/joinroom", {
+      return await fetchWithHeaders("/api/rooms/joinroom", {
         roomId,
         participant: {
           avatar: "avatarblah",

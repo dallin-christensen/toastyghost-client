@@ -36,7 +36,7 @@ function CreateNewRoomForm() {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      return await fetchWithHeaders("http://localhost:8082/api/rooms/createroom", {
+      return await fetchWithHeaders("/api/rooms/createroom", {
         name: roomName,
           participants: [
             {
