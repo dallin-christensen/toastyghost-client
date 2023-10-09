@@ -9,6 +9,8 @@ import MuiProvider from "./styles/MuiProvider"
 import AppBase from "./components/AppBase"
 import { SnackbarProvider } from "./context/SnackbarContext"
 
+console.log('test new vercel json configs make it in')
+
 const queryClient = new QueryClient()
 
 function App() {
