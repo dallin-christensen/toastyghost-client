@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material"
-import Logo from "../components/Logo"
+import { Box, Typography } from '@mui/material'
+import Logo from '../components/Logo'
 import styled from '@emotion/styled'
-import { ReactNode } from "react"
+import { ReactNode } from 'react'
 
 const Container = styled(Box)`
   display: flex;
@@ -19,7 +19,6 @@ type TemplateProps = {
 }
 
 function ExteriorPageTemplate({ children }: TemplateProps) {
-
   return (
     <Container>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

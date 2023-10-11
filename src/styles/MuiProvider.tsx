@@ -1,6 +1,6 @@
 import React from 'react'
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material"
-import { ThemeOptions } from '@mui/material/styles';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { ThemeOptions } from '@mui/material/styles'
 
 export const themeOptions: ThemeOptions = {
   palette: {
@@ -20,7 +20,7 @@ export const themeOptions: ThemeOptions = {
     fontWeightMedium: 600,
     fontWeightBold: 700,
   },
-};
+}
 
 const theme = createTheme(themeOptions)
 
@@ -31,9 +31,7 @@ type MuiProviderTypes = {
 function MuiProvider({ children }: MuiProviderTypes) {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline>
-        {children}
-      </CssBaseline>
+      <CssBaseline>{children}</CssBaseline>
     </ThemeProvider>
   )
 }

@@ -1,13 +1,13 @@
-import React, { useRef, useState } from "react"
-import debounce from "../utilities/debounce"
-import { useRoom } from "../context/RoomContext"
-import { useCurrentUser } from "../context/UserContext"
-import TextInput from "../elements/TextInput"
-import IconButton from "../elements/IconButton"
-import SendIcon from '@mui/icons-material/Send';
-import { Tooltip } from "@mui/material"
-import useSocketEventEmissions from "../hooks/useSocketEventEmissions"
-import { useEventListener } from "usehooks-ts"
+import React, { useRef, useState } from 'react'
+import debounce from '../utilities/debounce'
+import { useRoom } from '../context/RoomContext'
+import { useCurrentUser } from '../context/UserContext'
+import TextInput from '../elements/TextInput'
+import IconButton from '../elements/IconButton'
+import SendIcon from '@mui/icons-material/Send'
+import { Tooltip } from '@mui/material'
+import useSocketEventEmissions from '../hooks/useSocketEventEmissions'
+import { useEventListener } from 'usehooks-ts'
 
 function PostMessageInput() {
   const [messageVal, setMessageVal] = useState('')
@@ -17,9 +17,7 @@ function PostMessageInput() {
   const { room } = useRoom()
   const { currentUser } = useCurrentUser()
 
-  const {
-    emitInsertMessage
-  } = useSocketEventEmissions()
+  const { emitInsertMessage } = useSocketEventEmissions()
 
   const handlePostMessage = debounce(async () => {
     if (room?._id && currentUser?._id) {
@@ -29,7 +27,7 @@ function PostMessageInput() {
         text: messageVal,
       })
     }
-    setMessageVal("")
+    setMessageVal('')
   })
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -39,7 +37,7 @@ function PostMessageInput() {
   }
 
   const handleSetMessage = (val: string) => {
-    if(val.length <= 256) {
+    if (val.length <= 256) {
       setMessageValError('')
       setMessageVal(val)
     } else {
@@ -62,9 +60,9 @@ function PostMessageInput() {
     <>
       <TextInput
         autoFocus
-        label={"message - Press \"/\" to auto-focus"}
+        label={'message - Press "/" to auto-focus'}
         value={messageVal}
-        onChange={e => handleSetMessage(e.target.value)}
+        onChange={(e) => handleSetMessage(e.target.value)}
         onKeyDown={handleKeyDown}
         error={!!messageValError}
         helperText={messageValError}

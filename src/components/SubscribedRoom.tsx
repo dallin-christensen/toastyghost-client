@@ -1,11 +1,11 @@
-import { Box, Paper } from "@mui/material"
-import useSocketConnect from "../hooks/useSocketConnect"
-import useSocketEventListeners from "../hooks/useSocketEventListeners"
-import PostMessageInput from "./PostMessageInput"
+import { Box, Paper } from '@mui/material'
+import useSocketConnect from '../hooks/useSocketConnect'
+import useSocketEventListeners from '../hooks/useSocketEventListeners'
+import PostMessageInput from './PostMessageInput'
 import styled from '@emotion/styled'
-import RoomFooterActions from "./RoomFooterActions"
-import Canvas from "./Canvas"
-import Header from "./Header"
+import RoomFooterActions from './RoomFooterActions'
+import Canvas from './Canvas'
+import Header from './Header'
 
 const RoomBox = styled(Box)`
   display: flex;
@@ -26,7 +26,7 @@ const ActionPaper = styled(Paper)`
   align-items: center;
   justify-content: center;
   column-gap: 12px;
-  padding: .7rem .5rem;
+  padding: 0.7rem 0.5rem;
   left: 50%;
   transform: translateX(-50%);
 `
@@ -34,7 +34,6 @@ const ActionPaper = styled(Paper)`
 const CanvasContainer = styled(Box)`
   overflow: hidden;
 `
-
 
 function SubscribedRoom() {
   useSocketConnect()

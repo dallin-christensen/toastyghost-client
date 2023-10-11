@@ -1,11 +1,11 @@
-import GhostSVG from "../assets/ghost.svg?react"
+import GhostSVG from '../assets/ghost.svg?react' // eslint-disable-line import/no-unresolved
 import styled from '@emotion/styled'
 
 const SIZES = Object.freeze({
   small: 4,
   medium: 10,
-  large: 20
-});
+  large: 20,
+})
 
 type OutterCircleProps = {
   size: 4 | 10 | 20
@@ -41,7 +41,7 @@ const OutterCircle = styled.div<OutterCircleProps>`
 
   @keyframes hover2 {
     50% {
-      transform: translateY(-${(props) => props.size/2}px);
+      transform: translateY(-${(props) => props.size / 2}px);
     }
     100% {
       transform: translateY(-${(props) => props.size}px);

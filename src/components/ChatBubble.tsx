@@ -9,25 +9,24 @@ type BubbleProps = {
 }
 
 const Bubble = styled.div<BubbleProps>`
-	max-width: 300px;
-	/* background-color: #09f; */
-  background-color: ${(props) => props.colorBubble ? '#09f' : '#eee'};
+  max-width: 300px;
+  /* background-color: #09f; */
+  background-color: ${(props) => (props.colorBubble ? '#09f' : '#eee')};
 
-  padding: .7em 1em;
+  padding: 0.7em 1em;
   line-height: 1.5em;
   font-weight: 900;
   /* color: white; */
-  color: ${(props) => props.colorBubble ? '#fff' : '#000'};
+  color: ${(props) => (props.colorBubble ? '#fff' : '#000')};
 
-  margin:0 auto;
-  left:-300px;
-  right:-300px;
-  width:max-content;
+  margin: 0 auto;
+  left: -300px;
+  right: -300px;
+  width: max-content;
 
   border-radius: 16px;
-	-webkit-border-radius: 16px;
-	-moz-border-radius: 16px;
-
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
 
   :after {
     content: ' ';
@@ -40,13 +39,13 @@ const Bubble = styled.div<BubbleProps>`
     bottom: -12px;
     border: 16px solid;
     /* border-color: transparent transparent transparent #09f; */
-    border-color: transparent transparent transparent ${(props) => props.colorBubble ? '#09f' : '#eee'};
+    border-color: transparent transparent transparent ${(props) => (props.colorBubble ? '#09f' : '#eee')};
     z-index: -1;
   }
 
   /* animation stuffs */
-  -webkit-animation-duration: .2s;
-  animation-duration: .2s;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 `

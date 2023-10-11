@@ -1,16 +1,16 @@
-import { useState, SyntheticEvent } from 'react';
-import RoomType from '../data/types/RoomType';
-import ParticipantType from '../data/types/ParticipantType';
-import { useParams } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import fetchWithHeaders from '../utilities/fetchWithHeaders';
-import { useCurrentUser } from '../context/UserContext';
-import Button from '../elements/Button';
-import TextInput from '../elements/TextInput';
-import { Box, Typography } from '@mui/material';
+import { useState, SyntheticEvent } from 'react'
+import RoomType from '../data/types/RoomType'
+import ParticipantType from '../data/types/ParticipantType'
+import { useParams } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import fetchWithHeaders from '../utilities/fetchWithHeaders'
+import { useCurrentUser } from '../context/UserContext'
+import Button from '../elements/Button'
+import TextInput from '../elements/TextInput'
+import { Box, Typography } from '@mui/material'
 import styled from '@emotion/styled'
-import ExteriorPageTemplate from './ExteriorPageTemplate';
-import { useSnackbar } from '../context/SnackbarContext';
+import ExteriorPageTemplate from './ExteriorPageTemplate'
+import { useSnackbar } from '../context/SnackbarContext'
 
 const Wrapper = styled(Box)`
   display: flex;
@@ -27,23 +27,23 @@ const WithinForm = styled(Box)`
 `
 
 function JoinRoomForm() {
-  const [username, setUsername] = useState("")
-  const [usernameError, setUsernameError] = useState("")
+  const [username, setUsername] = useState('')
+  const [usernameError, setUsernameError] = useState('')
   const { roomId } = useParams()
   const { setCurrentUser } = useCurrentUser()
   const { triggerSnackbar } = useSnackbar()
 
   const mutation = useMutation({
     mutationFn: async () => {
-      return await fetchWithHeaders("/api/rooms/joinroom", {
+      return await fetchWithHeaders('/api/rooms/joinroom', {
         roomId,
         participant: {
-          avatar: "avatarblah",
-          handle: username
-        }
+          avatar: 'avatarblah',
+          handle: username,
+        },
       }).catch(() => console.log('in catch block'))
     },
-    onSuccess: ({room, participant, errors}: { room: RoomType, participant: ParticipantType, errors: Error[] }) => {
+    onSuccess: ({ room, participant, errors }: { room: RoomType; participant: ParticipantType; errors: Error[] }) => {
       if (errors?.length) {
         if (errors[0].message === 'room does not exist') {
           triggerSnackbar('room does not exist', 'error')
@@ -59,7 +59,7 @@ function JoinRoomForm() {
     },
     onError: () => {
       triggerSnackbar('an error occurred', 'error')
-    }
+    },
   })
 
   const onFinish = (e: SyntheticEvent) => {
@@ -67,7 +67,7 @@ function JoinRoomForm() {
     let validationApproved = true
 
     if (!username) {
-      setUsernameError("Required field")
+      setUsernameError('Required field')
       validationApproved = false
     }
 
@@ -82,7 +82,7 @@ function JoinRoomForm() {
   }
 
   const updateUsername = (value: string) => {
-    setUsernameError("")
+    setUsernameError('')
     if (validateInput(value)) {
       setUsername(value)
     }
@@ -93,8 +93,17 @@ function JoinRoomForm() {
       <Wrapper>
         <form onSubmit={onFinish}>
           <WithinForm>
-            <Typography variant='h3'  sx={{ color: 'primary.main', marginBottom: "2rem", fontWeight: 400 }}>Join Room</Typography>
-            <TextInput autoFocus label="User Nickname" value={username} onChange={e => updateUsername(e.target.value)} error={!!usernameError} helperText={usernameError} />
+            <Typography variant="h3" sx={{ color: 'primary.main', marginBottom: '2rem', fontWeight: 400 }}>
+              Join Room
+            </Typography>
+            <TextInput
+              autoFocus
+              label="User Nickname"
+              value={username}
+              onChange={(e) => updateUsername(e.target.value)}
+              error={!!usernameError}
+              helperText={usernameError}
+            />
             <Button type="submit">Submit</Button>
           </WithinForm>
         </form>

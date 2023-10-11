@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material"
+import { Box, CircularProgress } from '@mui/material'
 import styled from '@emotion/styled'
 
 const LoadingContainer = styled(Box)`
@@ -8,7 +8,6 @@ const LoadingContainer = styled(Box)`
   align-items: center;
   justify-content: center;
 `
-
 
 function LoadingScreen() {
   return (

@@ -1,18 +1,18 @@
-import { useRoom } from "../context/RoomContext"
-import { useCurrentUser } from "../context/UserContext"
-import JoinRoomForm from "../components/JoinRoomForm"
-import SubscribedRoom from "../components/SubscribedRoom"
-import { useQuery } from "@tanstack/react-query"
-import fetchWithHeaders from "../utilities/fetchWithHeaders"
-import { useParams } from "react-router-dom"
-import { useState } from "react"
-import LoadingScreen from "../components/LoadingScreen"
-import RoomType from "../data/types/RoomType"
+import { useRoom } from '../context/RoomContext'
+import { useCurrentUser } from '../context/UserContext'
+import JoinRoomForm from '../components/JoinRoomForm'
+import SubscribedRoom from '../components/SubscribedRoom'
+import { useQuery } from '@tanstack/react-query'
+import fetchWithHeaders from '../utilities/fetchWithHeaders'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import LoadingScreen from '../components/LoadingScreen'
+import RoomType from '../data/types/RoomType'
 
 type ResponseType = RoomType | string
 
 function Room() {
-  const { roomId = "" } = useParams()
+  const { roomId = '' } = useParams()
   const { currentUser } = useCurrentUser()
 
   const [grantAccess, setGrantAccess] = useState(false)
@@ -23,9 +23,9 @@ function Room() {
   useQuery({
     queryKey: ['participantroomlookup', currentUser?._id],
     queryFn: async () => {
-      return await fetchWithHeaders("/api/rooms/participantroomlookup", {
+      return await fetchWithHeaders('/api/rooms/participantroomlookup', {
         roomId,
-        participantId: currentUser?._id
+        participantId: currentUser?._id,
       })
     },
     onSuccess: (response: ResponseType) => {
@@ -45,9 +45,7 @@ function Room() {
 
   if (loading) return <LoadingScreen />
 
-  return grantAccess
-    ? <SubscribedRoom />
-    : <JoinRoomForm />
+  return grantAccess ? <SubscribedRoom /> : <JoinRoomForm />
 }
 
 export default Room
