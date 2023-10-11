@@ -11,16 +11,18 @@ const RoomBox = styled(Box)`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: 20px;
 `
 
 const ActionPaper = styled(Paper)`
   position: absolute;
   border-radius: 6px 6px 0 0;
   background-color: white;
-  bottom: 2rem;
+  bottom: 0px;
   width: 100%;
   max-width: 600px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   column-gap: 12px;
