@@ -1,29 +1,7 @@
 import Avvvatars from 'avvvatars-react'
 import ParticipantType from '../data/types/ParticipantType'
-import styled from '@emotion/styled'
 import ChatBubble from './ChatBubble'
 import { Tooltip } from '@mui/material'
-
-const Hitbox = styled.div`
-  width: 1px;
-  height: 1px;
-  position: relative;
-`
-const AvatarContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  border-radius: 100%;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
-  border: 1px solid #bbd;
-`
-const BubbleContainer = styled.div`
-  position: absolute;
-  bottom: 58px;
-  left: 0px;
-  z-index: 0;
-`
 
 type AvatarProps = {
   participant: ParticipantType
@@ -31,18 +9,18 @@ type AvatarProps = {
 
 function Avatar({ participant: p }: AvatarProps) {
   return (
-    <Hitbox>
+    <div className="w-[1px] h-[1px] relative">
       {p.latestMessage && (
-        <BubbleContainer>
+        <div className="absolute bottom-16 left-0 z-0">
           <ChatBubble message={p.latestMessage} />
-        </BubbleContainer>
+        </div>
       )}
       <Tooltip title={p.handle} placement="right" arrow>
-        <AvatarContainer>
+        <div className="absolute bottom-0 rounded-full border shadow border-indigo-400">
           <Avvvatars value={p.handle} size={40} border borderSize={2} />
-        </AvatarContainer>
+        </div>
       </Tooltip>
-    </Hitbox>
+    </div>
   )
 }
 

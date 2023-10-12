@@ -1,19 +1,10 @@
-import { Box, CircularProgress } from '@mui/material'
-import styled from '@emotion/styled'
-
-const LoadingContainer = styled(Box)`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-`
+import { CircularProgress } from '@mui/material'
 
 function LoadingScreen() {
   return (
-    <LoadingContainer>
+    <div className="flex w-full h-full items-center justify-center">
       <CircularProgress disableShrink />
-    </LoadingContainer>
+    </div>
   )
 }
 
