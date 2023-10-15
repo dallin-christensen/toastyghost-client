@@ -112,10 +112,20 @@ body {
 .toastup {
   -webkit-animation-name: toastup;
   animation-name: toastup;
+
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 .toastdown {
   -webkit-animation-name: toastdown;
   animation-name: toastdown;
+
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 @keyframes pulse-animation {
@@ -129,4 +139,46 @@ body {
 
 .pulse-animation {
   animation: pulse-animation 2s infinite;
+}
+
+.dark {
+  fill: #111;
+}
+
+.ghost {
+  filter: drop-shadow(5px 5px 0px rgb(0 0 0 / 0.4));
+  /* animation: float 3s ease-in-out infinite; */
+  animation-name: hover2;
+  animation-duration: 1.5s;
+  animation-delay: 0.3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes ghost-hover-small {
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes ghost-hover-medium {
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes ghost-hover-large {
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
 }

@@ -1,63 +1,17 @@
-import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import MessageType from '../data/types/MessageType'
-import { useCurrentUser } from '../context/UserContext'
 
-type BubbleProps = {
-  colorBubble: boolean
-}
-
-const Bubble = styled.div<BubbleProps>`
-  max-width: 300px;
-  /* background-color: #09f; */
-  background-color: ${(props) => (props.colorBubble ? '#09f' : '#eee')};
-
-  padding: 0.7em 1em;
-  line-height: 1.5em;
-  font-weight: 900;
-  /* color: white; */
-  color: ${(props) => (props.colorBubble ? '#fff' : '#000')};
-
-  margin: 0 auto;
-  left: -300px;
-  right: -300px;
-  width: max-content;
-
-  border-radius: 16px;
-  -webkit-border-radius: 16px;
-  -moz-border-radius: 16px;
-
-  :after {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 20px;
-    right: auto;
-    top: auto;
-    bottom: -12px;
-    border: 16px solid;
-    /* border-color: transparent transparent transparent #09f; */
-    border-color: transparent transparent transparent ${(props) => (props.colorBubble ? '#09f' : '#eee')};
-    z-index: -1;
-  }
-
-  /* animation stuffs */
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-`
+const afterClasses =
+  "after:content-[' '] after:absolute after:w-0 after:h-0 after:left-5 after:right-auto after:top-auto after:-bottom-3 after:border-[16px] after:border-solid after:border-t-transparent after:border-r-transparent after:border-b-transparent after:border-l-messageblue after:-z-10"
 
 type ChatBubbleProps = {
   message: MessageType
 }
 
 function ChatBubble({ message }: ChatBubbleProps) {
-  const { text, _id, participantId } = message
+  const { text, _id } = message
 
-  const { currentUser } = useCurrentUser()
   const [displayText, setDisplayText] = useState(true)
 
   useEffect(() => {
@@ -75,12 +29,14 @@ function ChatBubble({ message }: ChatBubbleProps) {
     }
   }, [_id, text])
 
-  const isCurrentUser = participantId === currentUser?._id
-
   return (
-    <Bubble className={displayText ? 'toastup' : 'toastdown'} colorBubble={isCurrentUser}>
+    <div
+      className={`${
+        displayText ? 'toastup' : 'toastdown'
+      } max-w-80 bg-messageblue px-4 py-3 leading-normal font-black text-white mx-0 my-auto -left-80 -right-80 w-max rounded-2xl ${afterClasses}`}
+    >
       <Typography variant="body1">{text}</Typography>
-    </Bubble>
+    </div>
   )
 }
 
