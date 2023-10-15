@@ -7,24 +7,9 @@ import fetchWithHeaders from '../utilities/fetchWithHeaders'
 import { useCurrentUser } from '../context/UserContext'
 import Button from '../elements/Button'
 import TextInput from '../elements/TextInput'
-import { Box, Typography } from '@mui/material'
-import styled from '@emotion/styled'
+import { Typography } from '@mui/material'
 import ExteriorPageTemplate from './ExteriorPageTemplate'
 import { useSnackbar } from '../context/SnackbarContext'
-
-const Wrapper = styled(Box)`
-  display: flex;
-  justify-content: center;
-`
-
-const WithinForm = styled(Box)`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  width: 400px;
-  gap: 1em;
-`
 
 function JoinRoomForm() {
   const [username, setUsername] = useState('')
@@ -90,9 +75,9 @@ function JoinRoomForm() {
 
   return (
     <ExteriorPageTemplate>
-      <Wrapper>
+      <div className="flex justify-center">
         <form onSubmit={onFinish}>
-          <WithinForm>
+          <div className="flex items-start justify-center flex-col w-96 gap-4">
             <Typography variant="h3" sx={{ color: 'primary.main', marginBottom: '2rem', fontWeight: 400 }}>
               Join Room
             </Typography>
@@ -105,9 +90,9 @@ function JoinRoomForm() {
               helperText={usernameError}
             />
             <Button type="submit">Submit</Button>
-          </WithinForm>
+          </div>
         </form>
-      </Wrapper>
+      </div>
     </ExteriorPageTemplate>
   )
 }

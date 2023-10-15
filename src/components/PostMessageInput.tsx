@@ -66,7 +66,7 @@ function PostMessageInput() {
         onKeyDown={handleKeyDown}
         error={!!messageValError}
         helperText={messageValError}
-        sx={{ maxWidth: 400 }}
+        sx={{ maxWidth: 460 }}
         inputRef={inputRef}
       />
       <Tooltip title="send message" placement="top" arrow>

@@ -1,17 +1,17 @@
 import { Button as MuiButton, ButtonProps } from '@mui/material'
-import styled from '@emotion/styled'
 
-const StyledMuiButton = styled(MuiButton)`
-  &:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-  }
-`
-
-function Button({ children, ...rest }: ButtonProps) {
+function Button({ children, className, ...rest }: ButtonProps) {
   return (
-    <StyledMuiButton variant="contained" disableRipple disableElevation size="large" {...rest}>
+    <MuiButton
+      variant="contained"
+      disableRipple
+      disableElevation
+      size="large"
+      className={`focus:shadow-buttonfocus ${className}`}
+      {...rest}
+    >
       {children}
-    </StyledMuiButton>
+    </MuiButton>
   )
 }
 
