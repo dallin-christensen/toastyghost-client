@@ -142,11 +142,11 @@ body {
 }
 
 .dark {
-  fill: #111;
+  fill: black;
 }
 
 .ghost {
-  filter: drop-shadow(5px 5px 0px rgb(0 0 0 / 0.4));
+  filter: drop-shadow(6px 6px 0px rgb(0 0 0 / 1));
   /* animation: float 3s ease-in-out infinite; */
   animation-name: hover2;
   animation-duration: 1.5s;

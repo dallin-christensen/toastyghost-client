@@ -83,11 +83,10 @@ function JoinRoomForm() {
             </Typography>
             <TextInput
               autoFocus
-              label="User Nickname"
+              placeholder="User Nickname"
               value={username}
               onChange={(e) => updateUsername(e.target.value)}
-              error={!!usernameError}
-              helperText={usernameError}
+              error={usernameError}
             />
             <Button type="submit">Submit</Button>
           </div>

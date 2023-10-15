@@ -1,18 +1,20 @@
-import { Button as MuiButton, ButtonProps } from '@mui/material'
+import { ButtonHTMLAttributes } from 'react'
 
-function Button({ children, className, ...rest }: ButtonProps) {
+type Props = {
+  children: React.ReactNode
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  className?: string
+} & ButtonHTMLAttributes<HTMLButtonElement>
+
+export default function Button({ children, onClick, className, ...rest }: Props) {
   return (
-    <MuiButton
-      variant="contained"
-      disableRipple
-      disableElevation
-      size="large"
-      className={`focus:shadow-buttonfocus ${className}`}
+    <button
+      aria-label="Click to perform an action"
+      onClick={onClick}
+      className={`flex cursor-pointer items-center rounded-md border-2 border-black bg-primary px-10 py-3 font-bold shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none disabled:translate-x-[3px] disabled:translate-y-[3px] disabled:shadow-none disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-500 ${className}`}
       {...rest}
     >
       {children}
-    </MuiButton>
+    </button>
   )
 }
-
-export default Button

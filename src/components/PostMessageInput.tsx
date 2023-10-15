@@ -4,10 +4,9 @@ import { useRoom } from '../context/RoomContext'
 import { useCurrentUser } from '../context/UserContext'
 import TextInput from '../elements/TextInput'
 import IconButton from '../elements/IconButton'
-import SendIcon from '@mui/icons-material/Send'
-import { Tooltip } from '@mui/material'
 import useSocketEventEmissions from '../hooks/useSocketEventEmissions'
 import { useEventListener } from 'usehooks-ts'
+import { RiSendPlane2Line } from 'react-icons/ri'
 
 function PostMessageInput() {
   const [messageVal, setMessageVal] = useState('')
@@ -60,20 +59,17 @@ function PostMessageInput() {
     <>
       <TextInput
         autoFocus
-        label={'message - Press "/" to auto-focus'}
+        placeholder={'message - Press "/" to auto-focus'}
         value={messageVal}
         onChange={(e) => handleSetMessage(e.target.value)}
         onKeyDown={handleKeyDown}
-        error={!!messageValError}
-        helperText={messageValError}
-        sx={{ maxWidth: 460 }}
+        error={messageValError}
         inputRef={inputRef}
       />
-      <Tooltip title="send message" placement="top" arrow>
-        <IconButton onClick={handlePostMessage} disabled={!messageVal}>
-          <SendIcon />
-        </IconButton>
-      </Tooltip>
+      {/* <Tooltip title="send message" placement="top" arrow> */}
+      <IconButton onClick={handlePostMessage} disabled={!messageVal}>
+        <RiSendPlane2Line className="h-6 min-h-6 w-6 min-w-6" />
+      </IconButton>
     </>
   )
 }

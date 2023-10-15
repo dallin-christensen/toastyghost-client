@@ -87,18 +87,16 @@ function CreateNewRoomForm() {
             </Typography>
             <TextInput
               autoFocus
-              label="Room Name"
+              placeholder="Room Name"
               value={roomName}
               onChange={(e) => updateRoomName(e.target.value)}
-              error={!!roomError}
-              helperText={roomError}
+              error={roomError}
             />
             <TextInput
-              label="User Nickname"
+              placeholder="User Nickname"
               value={username}
               onChange={(e) => updateUsername(e.target.value)}
-              error={!!usernameError}
-              helperText={usernameError}
+              error={usernameError}
             />
             <Button type="submit">Submit</Button>
           </div>

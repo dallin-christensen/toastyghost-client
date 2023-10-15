@@ -1,36 +1,15 @@
-import { IconButton as MuiIconButton, IconButtonProps as MuiIconButtonProps } from '@mui/material'
+import Button from './Button'
+import { ButtonHTMLAttributes } from 'react'
 
-type Additional = {
-  variant?: 'contained' | 'outlined'
-}
+type Props = {
+  children: React.ReactNode
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
-type IconButtonProps = Additional & MuiIconButtonProps
-
-function IconButton({ children, variant = 'contained', sx, className, ...rest }: IconButtonProps) {
-  const bgColor = variant === 'contained' ? 'primary.main' : 'transparent'
-
-  const color = variant === 'contained' ? 'white' : 'primary.main'
-
-  const hoverBgColor = variant === 'contained' ? 'rgb(72, 40, 128)' : '#eee'
-
+export default function IconButton({ children, onClick, ...rest }: Props) {
   return (
-    <MuiIconButton
-      sx={{
-        backgroundColor: bgColor,
-        color,
-        '&:hover': {
-          backgroundColor: hoverBgColor,
-        },
-        ...sx,
-      }}
-      disableRipple
-      size="large"
-      className={`focus:shadow-buttonfocus ${className}`}
-      {...rest}
-    >
+    <Button onClick={onClick} className="rounded-xl px-3 py-3" {...rest}>
       {children}
-    </MuiIconButton>
+    </Button>
   )
 }
-
-export default IconButton
