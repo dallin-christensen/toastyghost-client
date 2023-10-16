@@ -2,9 +2,6 @@ import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import MessageType from '../data/types/MessageType'
 
-const afterClasses =
-  "after:content-[' '] after:absolute after:w-0 after:h-0 after:left-5 after:right-auto after:top-auto after:-bottom-3 after:border-[16px] after:border-solid after:border-t-transparent after:border-r-transparent after:border-b-transparent after:border-l-messageblue after:-z-10"
-
 type ChatBubbleProps = {
   message: MessageType
 }
@@ -30,12 +27,18 @@ function ChatBubble({ message }: ChatBubbleProps) {
   }, [_id, text])
 
   return (
-    <div
-      className={`${
-        displayText ? 'toastup' : 'toastdown'
-      } max-w-80 bg-messageblue px-4 py-3 leading-normal font-black text-white mx-0 my-auto -left-80 -right-80 w-max rounded-2xl ${afterClasses}`}
-    >
-      <Typography variant="body1">{text}</Typography>
+    <div className={`${displayText ? 'toastup' : 'toastdown'}`}>
+      <div
+        className={`max-w-80 bg-messageblue px-4 py-3 leading-normal font-black text-black mx-0 my-auto -left-80 -right-80 w-max rounded-lg shadow-brutal border-2 border-black`}
+      >
+        <Typography variant="body1">{text}</Typography>
+      </div>
+      <div
+        className={`content-[' '] absolute w-0 h-0 left-5 right-auto top-auto -bottom-2 border-[8px] border-solid border-t-messageblue border-r-transparent border-b-transparent border-l-messageblue -z-0`}
+      ></div>
+      <div
+        className={`content-[' '] absolute w-0 h-0 left-[18px] right-auto top-auto -bottom-[13px] border-[10px] border-solid border-t-black border-r-transparent border-b-transparent border-l-black -z-10`}
+      />
     </div>
   )
 }

@@ -16,8 +16,8 @@ function Avatar({ participant: p }: AvatarProps) {
         </div>
       )}
       <Tooltip title={p.handle} placement="right" arrow>
-        <div className="absolute bottom-0 rounded-full border shadow border-indigo-400">
-          <Avvvatars value={p.handle} size={40} border borderSize={2} />
+        <div className="absolute bottom-0 rounded-full border-2 border-black bg-cover bg-center shadow-brutal transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-none hover:border-3">
+          <Avvvatars style="shape" value={p.handle} size={40} />
         </div>
       </Tooltip>
     </div>

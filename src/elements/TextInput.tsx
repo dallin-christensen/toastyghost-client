@@ -27,7 +27,7 @@ export default function TextInput({ value, onChange, placeholder, autoFocus = tr
         {...rest}
       />
       {!!error && (
-        <div className="flex pl-1 text-red-700">
+        <div className="flex pl-1 text-danger">
           <TbAlertOctagonFilled className="mr-3 h-6 min-h-[24px] w-6 min-w-[24px]" />
           <p>{error}</p>
         </div>
