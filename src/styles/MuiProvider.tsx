@@ -14,7 +14,7 @@ export const themeOptions: ThemeOptions = {
     },
   },
   typography: {
-    fontFamily: "'Ubuntu', sans-serif",
+    fontFamily: "'Public Sans', sans-serif",
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,

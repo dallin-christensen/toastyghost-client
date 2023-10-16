@@ -7,9 +7,9 @@ import fetchWithHeaders from '../utilities/fetchWithHeaders'
 import { useCurrentUser } from '../context/UserContext'
 import Button from '../elements/Button'
 import TextInput from '../elements/TextInput'
-import { Typography } from '@mui/material'
 import ExteriorPageTemplate from './ExteriorPageTemplate'
 import { useSnackbar } from '../context/SnackbarContext'
+import { HeadingTwo } from '../elements/Text'
 
 function JoinRoomForm() {
   const [username, setUsername] = useState('')
@@ -78,9 +78,7 @@ function JoinRoomForm() {
       <div className="flex justify-center">
         <form onSubmit={onFinish}>
           <div className="flex items-start justify-center flex-col w-96 gap-4">
-            <Typography variant="h3" sx={{ color: 'primary.main', marginBottom: '2rem', fontWeight: 400 }}>
-              Join Room
-            </Typography>
+            <HeadingTwo className="mb-4">Join Room</HeadingTwo>
             <TextInput
               autoFocus
               placeholder="User Nickname"

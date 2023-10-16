@@ -7,9 +7,9 @@ import { useCurrentUser } from '../context/UserContext'
 import fetchWithHeaders from '../utilities/fetchWithHeaders'
 import Button from '../elements/Button'
 import TextInput from '../elements/TextInput'
-import { Typography } from '@mui/material'
 import LoadingScreen from './LoadingScreen'
 import ExteriorPageTemplate from './ExteriorPageTemplate'
+import { HeadingTwo } from '../elements/Text'
 
 function CreateNewRoomForm() {
   const [roomName, setRoomName] = useState('')
@@ -82,9 +82,7 @@ function CreateNewRoomForm() {
       <div className="flex justify-center">
         <form onSubmit={onFinish}>
           <div className="flex items-start justify-center flex-col w-96 gap-4">
-            <Typography variant="h3" sx={{ color: 'primary.main', marginBottom: '2rem', fontWeight: 400 }}>
-              Create New Room
-            </Typography>
+            <HeadingTwo className="mb-4">Create New Room</HeadingTwo>
             <TextInput
               autoFocus
               placeholder="Room Name"

@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import MessageType from '../data/types/MessageType'
 
@@ -31,7 +30,7 @@ function ChatBubble({ message }: ChatBubbleProps) {
       <div
         className={`max-w-80 bg-messageblue px-4 py-3 leading-normal font-black text-black mx-0 my-auto -left-80 -right-80 w-max rounded-lg shadow-brutal border-2 border-black`}
       >
-        <Typography variant="body1">{text}</Typography>
+        <p>{text}</p>
       </div>
       <div
         className={`content-[' '] absolute w-0 h-0 left-5 right-auto top-auto -bottom-2 border-[8px] border-solid border-t-messageblue border-r-transparent border-b-transparent border-l-messageblue -z-0`}
