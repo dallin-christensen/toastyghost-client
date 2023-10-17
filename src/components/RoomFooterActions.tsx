@@ -1,16 +1,13 @@
-import IconButton from "../elements/IconButton"
-import LinkIcon from '@mui/icons-material/Link';
-import CloseIcon from '@mui/icons-material/Close';
-import { Tooltip } from "@mui/material";
-import useSocketEventEmissions from "../hooks/useSocketEventEmissions";
-import { useSnackbar } from "../context/SnackbarContext";
-import { useCurrentUser } from "../context/UserContext";
-import { useRoom } from "../context/RoomContext";
+import IconButton from '../elements/IconButton'
+import useSocketEventEmissions from '../hooks/useSocketEventEmissions'
+import { useSnackbar } from '../context/SnackbarContext'
+import { useCurrentUser } from '../context/UserContext'
+import { useRoom } from '../context/RoomContext'
+import { RiLink, RiCloseFill } from 'react-icons/ri'
+import Tooltip from '../elements/Tooltip'
 
 function RoomFooterActions() {
-  const {
-    emitDisconnect
-  } = useSocketEventEmissions()
+  const { emitDisconnect } = useSocketEventEmissions()
   const { triggerSnackbar } = useSnackbar()
 
   const { currentUser } = useCurrentUser()
@@ -18,7 +15,7 @@ function RoomFooterActions() {
 
   const copyUrlToClipboard = () => {
     navigator.clipboard.writeText(window.location.href)
-    triggerSnackbar("copied URL to clipboard")
+    triggerSnackbar('copied URL to clipboard')
   }
 
   const handleLeave = () => {
@@ -29,25 +26,30 @@ function RoomFooterActions() {
 
   return (
     <>
-    <Tooltip title="copy room link" placement="top" arrow>
-      <div>
-        <IconButton variant="outlined"
-          sx={{ transform: 'rotate(-45deg)' }}
-          onClick={copyUrlToClipboard}
-        >
-          <LinkIcon />
-        </IconButton>
-      </div>
-    </Tooltip>
-    <Tooltip title={isHost ? "close room" : "leave room"} placement="top" arrow>
-      <div>
-        <IconButton variant="outlined"
-          onClick={() => handleLeave()}
-        >
-          <CloseIcon />
-        </IconButton>
-      </div>
-    </Tooltip>
+      {/* <Tooltip title="copy room link" placement="top" arrow> */}
+      <Tooltip
+        elementToHover={
+          <div>
+            <IconButton onClick={copyUrlToClipboard}>
+              <RiLink className="h-6 min-h-6 w-6 min-w-6" />
+            </IconButton>
+          </div>
+        }
+        tooltip="copy room link"
+        positionClassName="left-1/2 transform -translate-x-1/2 bottom-[60px]"
+      />
+      {/* <Tooltip title={isHost ? 'close room' : 'leave room'} placement="top" arrow> */}
+      <Tooltip
+        elementToHover={
+          <div>
+            <IconButton onClick={() => handleLeave()}>
+              <RiCloseFill className="h-6 min-h-6 w-6 min-w-6" />
+            </IconButton>
+          </div>
+        }
+        tooltip={isHost ? 'close room' : 'leave room'}
+        positionClassName="left-1/2 transform -translate-x-1/2 bottom-[60px]"
+      />
     </>
   )
 }

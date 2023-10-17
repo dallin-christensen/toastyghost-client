@@ -1,64 +1,22 @@
-import GhostSVG from "../assets/ghost.svg?react"
-import styled from '@emotion/styled'
+import GhostSVG from '../assets/ghost.svg?react' // eslint-disable-line import/no-unresolved
 
-const SIZES = Object.freeze({
-  small: 4,
-  medium: 10,
-  large: 20
-});
-
-type OutterCircleProps = {
-  size: 4 | 10 | 20
+const outterCircleClasses = {
+  small: 'h-20 min-h-20 w-20 min-w-20 [&>svg]:w-11 [&>svg]:h-12 [&>svg]:animate-hover-small',
+  medium: 'h-44 min-h-44 w-44 min-w-44 [&>svg]:w-28 [&>svg]:h-28 [&>svg]:animate-hover-medium',
+  large: 'h-20 min-h-80 w-80 min-w-80 [&>svg]:w-56 [&>svg]:h-56 [&>svg]:animate-hover-large',
 }
 
-const OutterCircle = styled.div<OutterCircleProps>`
-  background-color: #673ab7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: ${(props) => props.size * 18}px;
-  min-height: ${(props) => props.size * 18}px;
-  width: ${(props) => props.size * 18}px;
-  min-width: ${(props) => props.size * 18}px;
-  border-radius: ${(props) => props.size * 9}px;
-
-  .dark {
-    fill: #111;
-  }
-
-  .ghost {
-    width: ${(props) => props.size * 11}px;
-    height: ${(props) => props.size * 12}px;
-    filter: drop-shadow(5px 5px 0px rgb(0 0 0 / 0.4));
-    /* animation: float 3s ease-in-out infinite; */
-    animation-name: hover2;
-    animation-duration: 1.5s;
-    animation-delay: 0.3s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-
-  @keyframes hover2 {
-    50% {
-      transform: translateY(-${(props) => props.size/2}px);
-    }
-    100% {
-      transform: translateY(-${(props) => props.size}px);
-    }
-  }
-`
-
 type LogoProps = {
-  size?: keyof typeof SIZES
+  size?: 'small' | 'medium' | 'large'
 }
 
 function Logo({ size = 'medium' }: LogoProps) {
-  const base = SIZES[size]
   return (
-    <OutterCircle size={base}>
+    <div
+      className={`bg-primary flex items-center justify-center rounded-full shadow-brutal border-2 border-black ${outterCircleClasses[size]}`}
+    >
       <GhostSVG />
-    </OutterCircle>
+    </div>
   )
 }
 

@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
@@ -7,7 +11,7 @@
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   height: 100vh;
   overflow: hidden;
 }
@@ -15,7 +19,7 @@ body {
 #root {
   height: 100%;
   display: flex;
-  flex-direction:column
+  flex-direction: column;
 }
 
 @keyframes hover {
@@ -108,10 +112,20 @@ body {
 .toastup {
   -webkit-animation-name: toastup;
   animation-name: toastup;
+
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 .toastdown {
   -webkit-animation-name: toastdown;
   animation-name: toastdown;
+
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 @keyframes pulse-animation {
@@ -125,4 +139,46 @@ body {
 
 .pulse-animation {
   animation: pulse-animation 2s infinite;
+}
+
+.dark {
+  fill: black;
+}
+
+.ghost {
+  filter: drop-shadow(6px 6px 0px rgb(0 0 0 / 1));
+  /* animation: float 3s ease-in-out infinite; */
+  animation-name: hover2;
+  animation-duration: 1.5s;
+  animation-delay: 0.3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes ghost-hover-small {
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes ghost-hover-medium {
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes ghost-hover-large {
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
 }

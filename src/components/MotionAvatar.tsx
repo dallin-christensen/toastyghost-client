@@ -1,7 +1,7 @@
-import ParticipantType from "../data/types/ParticipantType"
-import { useState, useEffect } from "react"
+import ParticipantType from '../data/types/ParticipantType'
+import { useState, useEffect } from 'react'
 import { useSpring, animated } from '@react-spring/web'
-import Avatar from "./Avatar"
+import Avatar from './Avatar'
 
 type MotionAvatarProps = {
   participant: ParticipantType
@@ -12,7 +12,7 @@ function MotionAvatar({ participant: p }: MotionAvatarProps) {
 
   useEffect(() => {
     setCoord((currentCoord) => {
-      return ({
+      return {
         from: {
           x: currentCoord.from.x,
           y: currentCoord.from.y,
@@ -20,21 +20,21 @@ function MotionAvatar({ participant: p }: MotionAvatarProps) {
         to: {
           x: p.x,
           y: p.y,
-        }
-      })
+        },
+      }
     })
   }, [p.x, p.y])
 
   const springs = useSpring({
-      from: { top: coord.from.x, left: coord.from.x },
-      to: { top: coord.to.y, left: coord.to.x },
-    })
+    from: { top: coord.from.x, left: coord.from.x },
+    to: { top: coord.to.y, left: coord.to.x },
+  })
 
   return (
     <animated.div
       style={{
         position: 'absolute',
-        ...springs
+        ...springs,
       }}
     >
       <Avatar participant={p} />

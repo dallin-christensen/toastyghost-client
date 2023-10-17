@@ -1,14 +1,45 @@
-import { TextField, TextFieldProps } from "@mui/material"
+import { ChangeEvent, InputHTMLAttributes, RefObject } from 'react'
+import { TbAlertOctagonFilled } from 'react-icons/tb'
 
-function TextInput(props: TextFieldProps) {
+type Props = {
+  value: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  placeholder: string
+  autoFocus?: boolean
+  error?: string
+  inputRef?: RefObject<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement>
+
+export default function TextInput({
+  value,
+  onChange,
+  placeholder,
+  autoFocus = false,
+  inputRef,
+  error,
+  ...rest
+}: Props) {
   return (
-    <TextField
-      variant="outlined"
-      size="medium"
-      fullWidth
-      {...props}
-    />
+    <>
+      <input
+        autoFocus={autoFocus}
+        className="rounded-md border-2 border-black p-[10px] w-full flex-1 font-bold shadow-brutal outline-none transition-all focus:translate-x-[3px] focus:translate-y-[3px] focus:shadow-none"
+        type="text"
+        name="text"
+        id="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        aria-label={placeholder}
+        ref={inputRef}
+        {...rest}
+      />
+      {!!error && (
+        <div className="flex pl-1 text-danger">
+          <TbAlertOctagonFilled className="mr-3 h-6 min-h-[24px] w-6 min-w-[24px]" />
+          <p>{error}</p>
+        </div>
+      )}
+    </>
   )
 }
-
-export default TextInput

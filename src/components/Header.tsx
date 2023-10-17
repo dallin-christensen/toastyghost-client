@@ -1,14 +1,6 @@
-import { Box, Typography } from "@mui/material"
-import { useRoom } from "../context/RoomContext"
-import styled from '@emotion/styled'
-import Logo from "./Logo"
-
-const Wrapper = styled(Box)`
-  display: flex;
-  column-gap: 1em;
-  align-items: baseline;
-  padding: .5em;
-`
+import { useRoom } from '../context/RoomContext'
+import Logo from './Logo'
+import { HeadingOne, HeadingTwo } from '../elements/Text'
 
 type HeaderProps = {
   withLogo?: boolean
@@ -17,19 +9,13 @@ type HeaderProps = {
 function Header({ withLogo = false }: HeaderProps) {
   const { room } = useRoom()
   return (
-    <Wrapper>
-      {
-        withLogo
-          && <Logo size='small' />
-      }
-      <Typography variant="h2" sx={{ userSelect: "none" }}>toastyGhost</Typography>
-      {
-        room?.name
-          && (
-            <Typography variant="h4" sx={{ color: 'primary.main', userSelect: "none" }}>{room?.name?.toUpperCase()}</Typography>
-          )
-      }
-    </Wrapper>
+    <div className="flex gap-x-5 items-center py-3 px-5 bg-backgroundsecondary border-b-2 shadow-brutal border-black rounded-lg m-2 border-2 w-fit">
+      {withLogo && <Logo size="small" />}
+      <div className="flex gap-x-4 flex-wrap items-baseline ">
+        <HeadingOne>toastyGhost</HeadingOne>
+        {room?.name && <HeadingTwo>{room?.name?.toUpperCase()}</HeadingTwo>}
+      </div>
+    </div>
   )
 }
 

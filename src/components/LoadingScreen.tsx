@@ -1,20 +1,10 @@
-import { Box, CircularProgress } from "@mui/material"
-import styled from '@emotion/styled'
-
-const LoadingContainer = styled(Box)`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-`
-
+import { ImSpinner5 } from 'react-icons/im'
 
 function LoadingScreen() {
   return (
-    <LoadingContainer>
-      <CircularProgress disableShrink />
-    </LoadingContainer>
+    <div className="flex w-full h-full items-center justify-center">
+      <ImSpinner5 className="text-6xl text-black animate-spin" />
+    </div>
   )
 }
 

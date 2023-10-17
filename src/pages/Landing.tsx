@@ -1,9 +1,7 @@
-import CreateNewRoomForm from "../components/CreateNewRoomForm"
+import CreateNewRoomForm from '../components/CreateNewRoomForm'
 
 function Landing() {
-  return (
-    <CreateNewRoomForm />
-  )
+  return <CreateNewRoomForm />
 }
 
 export default Landing

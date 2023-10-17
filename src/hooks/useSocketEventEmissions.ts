@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
-import socket from "../socket"
-import { useSnackbar } from "../context/SnackbarContext"
+import { useNavigate } from 'react-router-dom'
+import socket from '../socket'
+import { useSnackbar } from '../context/SnackbarContext'
 
 type InsertMessageArgs = {
   roomId: string
@@ -18,9 +18,7 @@ type UpdateCoordinatesArgs = {
 function useSocketEventEmissions() {
   const navigate = useNavigate()
 
-  const {
-    triggerSnackbar
-  } = useSnackbar()
+  const { triggerSnackbar } = useSnackbar()
 
   const emitInsertMessage = ({ roomId, participantId, text }: InsertMessageArgs) => {
     socket.emit('insertmessage', {
@@ -35,14 +33,14 @@ function useSocketEventEmissions() {
       roomId,
       participantId,
       x,
-      y
+      y,
     })
   }
 
   const emitDisconnect = () => {
     triggerSnackbar('Successfully left room')
     socket.emit('leaveroom')
-    navigate("/")
+    navigate('/')
   }
 
   return {

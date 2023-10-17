@@ -1,8 +1,8 @@
-import { useRoom } from "../context/RoomContext"
+import { useRoom } from '../context/RoomContext'
 import { useEventListener } from 'usehooks-ts'
-import useSocketEventEmissions from "../hooks/useSocketEventEmissions"
-import { useCurrentUser } from "../context/UserContext"
-import MotionAvatar from "./MotionAvatar"
+import useSocketEventEmissions from '../hooks/useSocketEventEmissions'
+import { useCurrentUser } from '../context/UserContext'
+import MotionAvatar from './MotionAvatar'
 
 function Canvas() {
   const { room } = useRoom()
@@ -29,11 +29,9 @@ function Canvas() {
 
   return (
     <div style={{ height: '100%', width: '100%' }}>
-      {
-        participants.map((p) => (
-          <MotionAvatar participant={p} key={p._id} />
-        ))
-      }
+      {participants.map((p) => (
+        <MotionAvatar participant={p} key={p._id} />
+      ))}
     </div>
   )
 }

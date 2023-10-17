@@ -1,27 +1,7 @@
 import Avvvatars from 'avvvatars-react'
 import ParticipantType from '../data/types/ParticipantType'
-import styled from '@emotion/styled'
 import ChatBubble from './ChatBubble'
-import { Tooltip } from '@mui/material'
-
-const Hitbox = styled.div`
-  width: 1px;
-  height: 1px;
-  position: relative;
-`
-const AvatarContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  border-radius: 100%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  border: 1px solid #bbd;
-`
-const BubbleContainer = styled.div`
-  position: absolute;
-  bottom: 58px;
-  left: 0px;
-  z-index: 0;
-`
+import Tooltip from '../elements/Tooltip'
 
 type AvatarProps = {
   participant: ParticipantType
@@ -29,21 +9,22 @@ type AvatarProps = {
 
 function Avatar({ participant: p }: AvatarProps) {
   return (
-    <Hitbox>
-      {
-        p.latestMessage
-          && (
-            <BubbleContainer>
-              <ChatBubble message={p.latestMessage} />
-            </BubbleContainer>
-          )
-      }
-      <Tooltip title={p.handle} placement="right" arrow>
-        <AvatarContainer>
-          <Avvvatars value={p.handle} size={40} border borderSize={2} />
-        </AvatarContainer>
-      </Tooltip>
-    </Hitbox>
+    <div className="w-[1px] h-[1px] relative">
+      {p.latestMessage && (
+        <div className="absolute bottom-12 left-0 z-0">
+          <ChatBubble message={p.latestMessage} />
+        </div>
+      )}
+      <Tooltip
+        elementToHover={
+          <div className="absolute bottom-0 rounded-full border-2 border-black bg-cover bg-center shadow-brutal transition-all duration-300 hover:scale-125 hover:rotate-12 hover:shadow-none hover:border-3">
+            <Avvvatars style="shape" value={p.handle} size={40} />
+          </div>
+        }
+        tooltip={p.handle}
+        positionClassName="bottom-[6px] left-14"
+      />
+    </div>
   )
 }
 

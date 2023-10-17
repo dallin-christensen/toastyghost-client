@@ -1,5 +1,5 @@
-import { ReactNode, createContext, useContext } from "react"
-import ParticipantType from "../data/types/ParticipantType"
+import { ReactNode, createContext, useContext } from 'react'
+import ParticipantType from '../data/types/ParticipantType'
 import { useLocalStorage } from 'usehooks-ts'
 
 type ParticipantContextType = {
@@ -18,13 +18,13 @@ type ParticipantProviderProps = {
 }
 
 export function CurrentUserProvider({ children }: ParticipantProviderProps) {
-  const [currentUser, setCurrentUser] = useLocalStorage<ParticipantType | null>("currentUser", null)
+  const [currentUser, setCurrentUser] = useLocalStorage<ParticipantType | null>('currentUser', null)
 
   return (
     <ParticpantContext.Provider
       value={{
         currentUser,
-        setCurrentUser
+        setCurrentUser,
       }}
     >
       {children}

@@ -1,52 +1,37 @@
-import { useMutation } from '@tanstack/react-query';
-import { SyntheticEvent, useState } from 'react';
-import RoomType from '../data/types/RoomType';
-import ParticipantType from '../data/types/ParticipantType';
-import { useNavigate } from "react-router-dom";
-import { useCurrentUser } from '../context/UserContext';
-import fetchWithHeaders from '../utilities/fetchWithHeaders';
-import Button from '../elements/Button';
-import TextInput from '../elements/TextInput';
-import { Box, Typography } from '@mui/material';
-import styled from '@emotion/styled'
-import LoadingScreen from './LoadingScreen';
-import ExteriorPageTemplate from './ExteriorPageTemplate';
-
-const Wrapper = styled(Box)`
-  display: flex;
-  justify-content: center;
-`
-
-const WithinForm = styled(Box)`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  width: 400px;
-  gap: 1em;
-`
+import { useMutation } from '@tanstack/react-query'
+import { SyntheticEvent, useState } from 'react'
+import RoomType from '../data/types/RoomType'
+import ParticipantType from '../data/types/ParticipantType'
+import { useNavigate } from 'react-router-dom'
+import { useCurrentUser } from '../context/UserContext'
+import fetchWithHeaders from '../utilities/fetchWithHeaders'
+import Button from '../elements/Button'
+import TextInput from '../elements/TextInput'
+import LoadingScreen from './LoadingScreen'
+import ExteriorPageTemplate from './ExteriorPageTemplate'
+import { HeadingTwo } from '../elements/Text'
 
 function CreateNewRoomForm() {
-  const [roomName, setRoomName] = useState("")
-  const [roomError, setRoomError] = useState("")
-  const [username, setUsername] = useState("")
-  const [usernameError, setUsernameError] = useState("")
-  const navigate = useNavigate();
+  const [roomName, setRoomName] = useState('')
+  const [roomError, setRoomError] = useState('')
+  const [username, setUsername] = useState('')
+  const [usernameError, setUsernameError] = useState('')
+  const navigate = useNavigate()
   const { setCurrentUser } = useCurrentUser()
 
   const mutation = useMutation({
     mutationFn: async () => {
-      return await fetchWithHeaders("/api/rooms/createroom", {
+      return await fetchWithHeaders('/api/rooms/createroom', {
         name: roomName,
-          participants: [
-            {
-              avatar: "avatarblah",
-              handle: username
-            }
-          ]
+        participants: [
+          {
+            avatar: 'avatarblah',
+            handle: username,
+          },
+        ],
       })
     },
-    onSuccess: ({room, participant}: { room: RoomType, participant: ParticipantType }) => {
+    onSuccess: ({ room, participant }: { room: RoomType; participant: ParticipantType }) => {
       if (room?._id) {
         setCurrentUser(participant)
         navigate(`/room/${room?._id}`)
@@ -59,12 +44,12 @@ function CreateNewRoomForm() {
     let validationApproved = true
 
     if (!roomName) {
-      setRoomError("Required field")
+      setRoomError('Required field')
       validationApproved = false
     }
 
     if (!username) {
-      setUsernameError("Required field")
+      setUsernameError('Required field')
       validationApproved = false
     }
 
@@ -79,14 +64,14 @@ function CreateNewRoomForm() {
   }
 
   const updateUsername = (value: string) => {
-    setUsernameError("")
+    setUsernameError('')
     if (validateInput(value)) {
       setUsername(value)
     }
   }
 
   const updateRoomName = (value: string) => {
-    setRoomError("")
+    setRoomError('')
     setRoomName(value)
   }
 
@@ -94,16 +79,27 @@ function CreateNewRoomForm() {
 
   return (
     <ExteriorPageTemplate>
-      <Wrapper>
+      <div className="flex justify-center bg-backgroundsecondary border-2 border-black shadow-brutal p-8 rounded-md">
         <form onSubmit={onFinish}>
-          <WithinForm>
-            <Typography variant='h3' sx={{ color: 'primary.main', marginBottom: "2rem", fontWeight: 400 }}>Create New Room</Typography>
-            <TextInput autoFocus label="Room Name" value={roomName} onChange={e => updateRoomName(e.target.value)} error={!!roomError} helperText={roomError} />
-            <TextInput label="User Nickname" value={username} onChange={e => updateUsername(e.target.value)} error={!!usernameError} helperText={usernameError} />
+          <div className="flex items-start justify-center flex-col gap-4">
+            <HeadingTwo className="mb-4">Create New Room</HeadingTwo>
+            <TextInput
+              autoFocus
+              placeholder="Room Name"
+              value={roomName}
+              onChange={(e) => updateRoomName(e.target.value)}
+              error={roomError}
+            />
+            <TextInput
+              placeholder="User Nickname"
+              value={username}
+              onChange={(e) => updateUsername(e.target.value)}
+              error={usernameError}
+            />
             <Button type="submit">Submit</Button>
-          </WithinForm>
+          </div>
         </form>
-      </Wrapper>
+      </div>
     </ExteriorPageTemplate>
   )
 }

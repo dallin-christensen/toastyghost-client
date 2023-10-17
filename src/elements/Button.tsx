@@ -1,16 +1,20 @@
-import { Button as MuiButton, ButtonProps } from "@mui/material"
-import styled from '@emotion/styled'
+import { ButtonHTMLAttributes } from 'react'
 
-const StyledMuiButton = styled(MuiButton)`
-  &:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
-  }
-`
+type Props = {
+  children: React.ReactNode
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  className?: string
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
-function Button({ children, ...rest }: ButtonProps) {
+export default function Button({ children, onClick, className, ...rest }: Props) {
   return (
-    <StyledMuiButton variant="contained" disableRipple disableElevation size='large' {...rest}>{children}</StyledMuiButton>
+    <button
+      aria-label="Click to perform an action"
+      onClick={onClick}
+      className={`flex cursor-pointer items-center rounded-md border-2 border-black bg-primary px-10 py-3 font-bold shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none disabled:translate-x-[3px] disabled:translate-y-[3px] disabled:shadow-none disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-500 focus:translate-x-[3px] focus:translate-y-[3px] focus:shadow-none ${className}`}
+      {...rest}
+    >
+      {children}
+    </button>
   )
 }
-
-export default Button

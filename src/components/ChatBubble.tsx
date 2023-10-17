@@ -1,64 +1,14 @@
-import styled from '@emotion/styled'
-import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import MessageType from '../data/types/MessageType'
-import { useCurrentUser } from '../context/UserContext'
-
-type BubbleProps = {
-  colorBubble: boolean
-}
-
-const Bubble = styled.div<BubbleProps>`
-	max-width: 300px;
-	/* background-color: #09f; */
-  background-color: ${(props) => props.colorBubble ? '#09f' : '#eee'};
-
-  padding: .7em 1em;
-  line-height: 1.5em;
-  font-weight: 900;
-  /* color: white; */
-  color: ${(props) => props.colorBubble ? '#fff' : '#000'};
-
-  margin:0 auto;
-  left:-300px;
-  right:-300px;
-  width:max-content;
-
-  border-radius: 16px;
-	-webkit-border-radius: 16px;
-	-moz-border-radius: 16px;
-
-
-  :after {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 20px;
-    right: auto;
-    top: auto;
-    bottom: -12px;
-    border: 16px solid;
-    /* border-color: transparent transparent transparent #09f; */
-    border-color: transparent transparent transparent ${(props) => props.colorBubble ? '#09f' : '#eee'};
-    z-index: -1;
-  }
-
-  /* animation stuffs */
-  -webkit-animation-duration: .2s;
-  animation-duration: .2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-`
+import { Text } from '../elements/Text'
 
 type ChatBubbleProps = {
   message: MessageType
 }
 
 function ChatBubble({ message }: ChatBubbleProps) {
-  const { text, _id, participantId } = message
+  const { text, _id } = message
 
-  const { currentUser } = useCurrentUser()
   const [displayText, setDisplayText] = useState(true)
 
   useEffect(() => {
@@ -76,12 +26,20 @@ function ChatBubble({ message }: ChatBubbleProps) {
     }
   }, [_id, text])
 
-  const isCurrentUser = participantId === currentUser?._id
-
   return (
-    <Bubble className={displayText ? 'toastup' : 'toastdown'} colorBubble={isCurrentUser}>
-      <Typography variant="body1">{text}</Typography>
-    </Bubble>
+    <div className={`${displayText ? 'toastup' : 'toastdown'}`}>
+      <div
+        className={`max-w-80 bg-messageblue px-4 py-3 leading-normal font-black text-black mx-0 my-auto -left-80 -right-80 w-max rounded-lg shadow-brutal border-2 border-black`}
+      >
+        <Text>{text}</Text>
+      </div>
+      <div
+        className={`absolute w-0 h-0 left-6 right-auto top-auto -bottom-2 border-[8px] border-solid border-t-messageblue border-r-transparent border-b-transparent border-l-messageblue -z-0`}
+      ></div>
+      <div
+        className={`absolute w-0 h-0 left-[22px] right-auto top-auto -bottom-[13px] border-[10px] border-solid border-t-black border-r-transparent border-b-transparent border-l-black -z-10`}
+      />
+    </div>
   )
 }
 
