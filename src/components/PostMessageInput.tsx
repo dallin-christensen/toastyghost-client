@@ -7,6 +7,7 @@ import IconButton from '../elements/IconButton'
 import useSocketEventEmissions from '../hooks/useSocketEventEmissions'
 import { useEventListener } from 'usehooks-ts'
 import { RiSendPlane2Line } from 'react-icons/ri'
+import Tooltip from '../elements/Tooltip'
 
 function PostMessageInput() {
   const [messageVal, setMessageVal] = useState('')
@@ -66,10 +67,15 @@ function PostMessageInput() {
         error={messageValError}
         inputRef={inputRef}
       />
-      {/* <Tooltip title="send message" placement="top" arrow> */}
-      <IconButton onClick={handlePostMessage} disabled={!messageVal}>
-        <RiSendPlane2Line className="h-6 min-h-6 w-6 min-w-6" />
-      </IconButton>
+      <Tooltip
+        elementToHover={
+          <IconButton onClick={handlePostMessage} disabled={!messageVal}>
+            <RiSendPlane2Line className="h-6 min-h-6 w-6 min-w-6" />
+          </IconButton>
+        }
+        tooltip="send message"
+        positionClassName="left-1/2 transform -translate-x-1/2 bottom-[60px]"
+      />
     </>
   )
 }

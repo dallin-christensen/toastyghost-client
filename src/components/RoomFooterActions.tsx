@@ -1,17 +1,17 @@
 import IconButton from '../elements/IconButton'
-// import { Tooltip } from '@mui/material'
 import useSocketEventEmissions from '../hooks/useSocketEventEmissions'
 import { useSnackbar } from '../context/SnackbarContext'
-// import { useCurrentUser } from '../context/UserContext'
-// import { useRoom } from '../context/RoomContext'
+import { useCurrentUser } from '../context/UserContext'
+import { useRoom } from '../context/RoomContext'
 import { RiLink, RiCloseFill } from 'react-icons/ri'
+import Tooltip from '../elements/Tooltip'
 
 function RoomFooterActions() {
   const { emitDisconnect } = useSocketEventEmissions()
   const { triggerSnackbar } = useSnackbar()
 
-  // const { currentUser } = useCurrentUser()
-  // const { room } = useRoom()
+  const { currentUser } = useCurrentUser()
+  const { room } = useRoom()
 
   const copyUrlToClipboard = () => {
     navigator.clipboard.writeText(window.location.href)
@@ -22,22 +22,34 @@ function RoomFooterActions() {
     emitDisconnect()
   }
 
-  // const isHost = room?.host === currentUser?._id
+  const isHost = room?.host === currentUser?._id
 
   return (
     <>
       {/* <Tooltip title="copy room link" placement="top" arrow> */}
-      <div>
-        <IconButton onClick={copyUrlToClipboard}>
-          <RiLink className="h-6 min-h-6 w-6 min-w-6" />
-        </IconButton>
-      </div>
+      <Tooltip
+        elementToHover={
+          <div>
+            <IconButton onClick={copyUrlToClipboard}>
+              <RiLink className="h-6 min-h-6 w-6 min-w-6" />
+            </IconButton>
+          </div>
+        }
+        tooltip="copy room link"
+        positionClassName="left-1/2 transform -translate-x-1/2 bottom-[60px]"
+      />
       {/* <Tooltip title={isHost ? 'close room' : 'leave room'} placement="top" arrow> */}
-      <div>
-        <IconButton onClick={() => handleLeave()}>
-          <RiCloseFill className="h-6 min-h-6 w-6 min-w-6" />
-        </IconButton>
-      </div>
+      <Tooltip
+        elementToHover={
+          <div>
+            <IconButton onClick={() => handleLeave()}>
+              <RiCloseFill className="h-6 min-h-6 w-6 min-w-6" />
+            </IconButton>
+          </div>
+        }
+        tooltip={isHost ? 'close room' : 'leave room'}
+        positionClassName="left-1/2 transform -translate-x-1/2 bottom-[60px]"
+      />
     </>
   )
 }
