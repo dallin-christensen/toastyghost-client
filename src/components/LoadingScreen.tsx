@@ -1,9 +1,9 @@
-import { CircularProgress } from '@mui/material'
+import { ImSpinner5 } from 'react-icons/im'
 
 function LoadingScreen() {
   return (
     <div className="flex w-full h-full items-center justify-center">
-      <CircularProgress disableShrink />
+      <ImSpinner5 className="text-6xl text-black animate-spin" />
     </div>
   )
 }

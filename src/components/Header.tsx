@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material'
 import { useRoom } from '../context/RoomContext'
 import Logo from './Logo'
+import { HeadingOne, HeadingTwo } from '../elements/Text'
 
 type HeaderProps = {
   withLogo?: boolean
@@ -9,16 +9,12 @@ type HeaderProps = {
 function Header({ withLogo = false }: HeaderProps) {
   const { room } = useRoom()
   return (
-    <div className="flex gap-x-4 items-baseline p-2">
+    <div className="flex gap-x-5 items-center py-3 px-5 bg-backgroundsecondary border-b-2 shadow-brutal border-black rounded-lg m-2 border-2 w-fit">
       {withLogo && <Logo size="small" />}
-      <Typography variant="h2" sx={{ userSelect: 'none' }}>
-        toastyGhost
-      </Typography>
-      {room?.name && (
-        <Typography variant="h4" sx={{ color: 'primary.main', userSelect: 'none' }}>
-          {room?.name?.toUpperCase()}
-        </Typography>
-      )}
+      <div className="flex gap-x-4 flex-wrap items-baseline ">
+        <HeadingOne>toastyGhost</HeadingOne>
+        {room?.name && <HeadingTwo>{room?.name?.toUpperCase()}</HeadingTwo>}
+      </div>
     </div>
   )
 }

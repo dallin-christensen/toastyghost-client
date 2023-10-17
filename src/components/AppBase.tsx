@@ -5,7 +5,7 @@ import Room from '../pages/Room'
 function AppBase() {
   return (
     <>
-      <div className="h-full bg-white">
+      <div className="h-full bg-background">
         <Router>
           <Routes>
             <Route path="/" element={<Landing />} />

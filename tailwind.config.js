@@ -7,9 +7,11 @@ export default {
   theme: {
     colors: {
       background: '#fff',
-      primary: '#673ab7',
-      messageblue: '#09f',
-      // violet: colors.violet,
+      backgroundsecondary: '#def',
+      primary: '#bc95d4',
+      messageblue: '#9cf',
+      danger: '#ff7a5c',
+      success: '#c8e1cc',
       ...colors,
     },
     extend: {
@@ -27,6 +29,8 @@ export default {
       }),
       boxShadow: {
         buttonfocus: '0 0 0 0.2rem rgba(0, 123, 255, 0.5)',
+        brutal: '4px 4px 0px 0px rgba(0,0,0,1)',
+        brutalhigh: '6px 4px 0px 0px rgba(0,0,0,1)',
       },
       keyframes: {
         hoversmall: {

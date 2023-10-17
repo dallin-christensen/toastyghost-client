@@ -12,7 +12,9 @@ type LogoProps = {
 
 function Logo({ size = 'medium' }: LogoProps) {
   return (
-    <div className={`bg-primary flex items-center justify-center rounded-full ${outterCircleClasses[size]}`}>
+    <div
+      className={`bg-primary flex items-center justify-center rounded-full shadow-brutal border-2 border-black ${outterCircleClasses[size]}`}
+    >
       <GhostSVG />
     </div>
   )

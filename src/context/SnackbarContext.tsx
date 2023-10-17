@@ -1,5 +1,5 @@
-import { Alert, Snackbar } from '@mui/material'
-import { ReactNode, createContext, useContext, useState } from 'react'
+import { ReactNode, createContext, useCallback, useContext, useState } from 'react'
+import Snackbar from '../elements/Snackbar'
 
 type SnackTypeType = 'success' | 'error'
 
@@ -28,20 +28,15 @@ export function SnackbarProvider({ children }: SnackbarProviderProps) {
     setSnackType(type)
   }
 
+  const onClose = useCallback(() => setOpen(false), [])
+
   return (
     <SnackbarContext.Provider
       value={{
         triggerSnackbar,
       }}
     >
-      <Snackbar
-        open={open}
-        autoHideDuration={2500}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        onClose={() => setOpen(false)}
-      >
-        <Alert severity={snackType}>{snackMessage}</Alert>
-      </Snackbar>
+      <Snackbar message={snackMessage} open={open} type={snackType} onClose={onClose} />
       {children}
     </SnackbarContext.Provider>
   )
