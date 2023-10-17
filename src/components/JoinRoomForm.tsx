@@ -75,7 +75,7 @@ function JoinRoomForm() {
 
   return (
     <ExteriorPageTemplate>
-      <div className="flex justify-center">
+      <div className="flex justify-center bg-backgroundsecondary border-2 border-black shadow-brutal p-8 rounded-md">
         <form onSubmit={onFinish}>
           <div className="flex items-start justify-center flex-col w-96 gap-4">
             <HeadingTwo className="mb-4">Join Room</HeadingTwo>

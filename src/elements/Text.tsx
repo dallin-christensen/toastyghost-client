@@ -11,5 +11,5 @@ export function HeadingOne({ children, className = '' }: TextTypes) {
 }
 
 export function HeadingTwo({ children, className = '' }: TextTypes) {
-  return <h2 className={`m-0 p-0 text-primary text-4xl ${className}`}>{children}</h2>
+  return <h2 className={`m-0 p-0 text-black text-4xl ${className}`}>{children}</h2>
 }

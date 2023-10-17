@@ -10,7 +10,15 @@ type Props = {
   inputRef?: RefObject<HTMLInputElement>
 } & InputHTMLAttributes<HTMLInputElement>
 
-export default function TextInput({ value, onChange, placeholder, autoFocus = true, inputRef, error, ...rest }: Props) {
+export default function TextInput({
+  value,
+  onChange,
+  placeholder,
+  autoFocus = false,
+  inputRef,
+  error,
+  ...rest
+}: Props) {
   return (
     <>
       <input

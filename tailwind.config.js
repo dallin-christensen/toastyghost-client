@@ -7,8 +7,9 @@ export default {
   theme: {
     colors: {
       background: '#fff',
+      backgroundsecondary: '#def',
       primary: '#bc95d4',
-      messageblue: '#80caff',
+      messageblue: '#9cf',
       danger: '#ff7a5c',
       success: '#c8e1cc',
       ...colors,
