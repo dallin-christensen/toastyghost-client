@@ -3,7 +3,7 @@ type BodyType = {
 }
 
 const prependedUrl =
-  process.env.NODE_ENV === 'production' ? 'https://toastyghost-server.onrender.com' : 'http://localhost:8082'
+  process.env.NODE_ENV === 'production' ? 'https://server.toastyghost.dev' : 'http://localhost:8082'
 
 function fetchWithHeaders(url: string, body: BodyType, method?: string) {
   return fetch(prependedUrl + url, {
