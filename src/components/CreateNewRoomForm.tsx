@@ -81,7 +81,7 @@ function CreateNewRoomForm() {
     <ExteriorPageTemplate>
       <div className="flex justify-center bg-backgroundsecondary border-2 border-black shadow-brutal p-8 rounded-md mb-2">
         <form onSubmit={onFinish}>
-          <div className="flex items-start justify-center flex-col gap-4">
+          <div className="flex items-start justify-center flex-col gap-4 md:w-96">
             <HeadingTwo className="mb-4">Create New Room</HeadingTwo>
             <TextInput
               autoFocus

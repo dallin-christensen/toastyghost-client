@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 type TextTypes = { children: ReactNode; className?: string }
 
 export function Text({ children, className = '' }: TextTypes) {
-  return <p className={`m-0 p-0 text-black text-base md:text-lg ${className}`}>{children}</p>
+  return <p className={`m-0 p-0 text-black text-base ${className}`}>{children}</p>
 }
 
 export function HeadingOne({ children, className = '' }: TextTypes) {
@@ -11,5 +11,5 @@ export function HeadingOne({ children, className = '' }: TextTypes) {
 }
 
 export function HeadingTwo({ children, className = '' }: TextTypes) {
-  return <h2 className={`m-0 p-0 text-black text-3xl md:text-4xl ${className}`}>{children}</h2>
+  return <h2 className={`m-0 p-0 text-black text-3xl md:text-4xl font-medium ${className}`}>{children}</h2>
 }
