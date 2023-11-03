@@ -10,18 +10,14 @@ function SubscribedRoom() {
   useSocketEventListeners()
 
   return (
-    <>
+    <div className="overflow-hidden h-screen">
       <Header withLogo />
-      <div className="flex flex-col overflow-hidden p-5">
-        <div className="overflow-hidden">
-          <Canvas />
-        </div>
+        <Canvas />
         <div className="action-paper absolute rounded-t-md bg-transparent bottom-0 w-full max-w-2xl flex flex-wrap items-center justify-center gap-3 p-3 left-1/2 transform -translate-x-1/2">
           <PostMessageInput />
           <RoomFooterActions />
         </div>
-      </div>
-    </>
+    </div>
   )
 }
 
