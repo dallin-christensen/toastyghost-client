@@ -4,7 +4,7 @@ import { TbAlertOctagonFilled } from 'react-icons/tb'
 
 const typeClasses = {
   success: 'bg-success',
-  error: 'bg-danger',
+  error: 'bg-dangerbg',
 }
 
 const iconClasses = 'mr-3 h-6 min-h-[24px] w-6 min-w-[24px]'
