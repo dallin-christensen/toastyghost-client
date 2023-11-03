@@ -8,10 +8,11 @@ export default {
     colors: {
       background: '#fff',
       backgroundsecondary: '#def',
-      primary: '#bc95d4',
+      primary: '#B9A8E5',
       messageblue: '#9cf',
-      danger: '#ff7a5c',
-      success: '#c8e1cc',
+      danger: '#c62d09',
+      dangerbg: '#ff7a5c',
+      success: '#a8e5b9',
       ...colors,
     },
     extend: {
