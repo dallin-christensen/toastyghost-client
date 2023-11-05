@@ -4,6 +4,7 @@ import { CurrentUserProvider } from './context/UserContext'
 import AppBase from './components/AppBase'
 import { SnackbarProvider } from './context/SnackbarContext'
 import './app.css'
+import { LoadingProvider } from './context/LoadingScreenContext'
 
 const queryClient = new QueryClient()
 
@@ -13,7 +14,9 @@ function App() {
       <CurrentUserProvider>
         <RoomProvider>
           <SnackbarProvider>
-            <AppBase />
+            <LoadingProvider>
+              <AppBase />
+            </LoadingProvider>
           </SnackbarProvider>
         </RoomProvider>
       </CurrentUserProvider>

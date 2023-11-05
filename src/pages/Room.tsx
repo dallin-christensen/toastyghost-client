@@ -6,8 +6,8 @@ import { useQuery } from '@tanstack/react-query'
 import fetchWithHeaders from '../utilities/fetchWithHeaders'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
-import LoadingScreen from '../components/LoadingScreen'
 import RoomType from '../data/types/RoomType'
+import { useLoading } from '../context/LoadingScreenContext'
 
 type ResponseType = RoomType | string
 
@@ -16,7 +16,8 @@ function Room() {
   const { currentUser } = useCurrentUser()
 
   const [grantAccess, setGrantAccess] = useState(false)
-  const [loading, setLoading] = useState(!!currentUser?._id) // only assume loading if current user is pupulated, because elsewise we skip the room lookup altogether
+
+  const { loading, setLoading } = useLoading()
 
   const { setRoom } = useRoom()
 
@@ -43,7 +44,7 @@ function Room() {
     enabled: !!currentUser?._id,
   })
 
-  if (loading) return <LoadingScreen />
+  if (loading) return null
 
   return grantAccess ? <SubscribedRoom /> : <JoinRoomForm />
 }

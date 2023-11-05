@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { SyntheticEvent, useState } from 'react'
+import { SyntheticEvent, useEffect, useState } from 'react'
 import RoomType from '../data/types/RoomType'
 import ParticipantType from '../data/types/ParticipantType'
 import { useNavigate } from 'react-router-dom'
@@ -7,9 +7,9 @@ import { useCurrentUser } from '../context/UserContext'
 import fetchWithHeaders from '../utilities/fetchWithHeaders'
 import Button from '../elements/Button'
 import TextInput from '../elements/TextInput'
-import LoadingScreen from './LoadingScreen'
 import ExteriorPageTemplate from './ExteriorPageTemplate'
 import { HeadingTwo } from '../elements/Text'
+import { useLoading } from '../context/LoadingScreenContext'
 
 function CreateNewRoomForm() {
   const [roomName, setRoomName] = useState('')
@@ -18,6 +18,8 @@ function CreateNewRoomForm() {
   const [usernameError, setUsernameError] = useState('')
   const navigate = useNavigate()
   const { setCurrentUser } = useCurrentUser()
+
+  const { loading, setLoading } = useLoading()
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -38,6 +40,10 @@ function CreateNewRoomForm() {
       }
     },
   })
+
+  useEffect(() => {
+    setLoading(mutation.isLoading)
+  }, [mutation.isLoading, setLoading])
 
   const onFinish = (e: SyntheticEvent) => {
     e.preventDefault()
@@ -75,7 +81,7 @@ function CreateNewRoomForm() {
     setRoomName(value)
   }
 
-  if (mutation.isLoading) return <LoadingScreen />
+  if (loading) return null
 
   return (
     <ExteriorPageTemplate>
