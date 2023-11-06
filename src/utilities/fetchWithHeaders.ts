@@ -2,7 +2,7 @@ type BodyType = {
   [key: string]: unknown
 }
 
-const DEV_SERVER_PORT = process.env.DEV_SERVER_PORT ?? '8082'
+const DEV_SERVER_PORT = import.meta.env.DEV_SERVER_PORT ?? '8082'
 
 const prependedUrl =
   process.env.NODE_ENV === 'production' ? 'https://server.toastyghost.dev' : `http://localhost:${DEV_SERVER_PORT}`
