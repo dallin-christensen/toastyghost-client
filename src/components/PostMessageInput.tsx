@@ -66,6 +66,7 @@ function PostMessageInput() {
         onKeyDown={handleKeyDown}
         error={messageValError}
         inputRef={inputRef}
+        className="min-w-full md:min-w-0"
       />
       <Tooltip
         elementToHover={

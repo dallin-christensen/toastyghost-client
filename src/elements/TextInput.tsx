@@ -8,6 +8,7 @@ type Props = {
   autoFocus?: boolean
   error?: string
   inputRef?: RefObject<HTMLInputElement>
+  className?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
 export default function TextInput({
@@ -17,13 +18,14 @@ export default function TextInput({
   autoFocus = false,
   inputRef,
   error,
+  className = '',
   ...rest
 }: Props) {
   return (
     <>
       <input
         autoFocus={autoFocus}
-        className="rounded-md border-2 border-black p-[10px] w-full flex-1 font-bold shadow-brutal outline-none transition-all focus:translate-x-[3px] focus:translate-y-[3px] focus:shadow-none"
+        className={`rounded-md border-2 border-black p-[10px] w-full flex-1 font-bold shadow-brutal outline-none transition-all focus:translate-x-[3px] focus:translate-y-[3px] focus:shadow-none ${className}`}
         type="text"
         name="text"
         id="text"
