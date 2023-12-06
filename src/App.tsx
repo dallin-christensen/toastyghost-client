@@ -5,6 +5,7 @@ import AppBase from './components/AppBase'
 import { SnackbarProvider } from './context/SnackbarContext'
 import './app.css'
 import { LoadingProvider } from './context/LoadingScreenContext'
+import { ThemeProvider } from './context/ThemeContext'
 
 const queryClient = new QueryClient()
 
@@ -13,11 +14,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <CurrentUserProvider>
         <RoomProvider>
-          <SnackbarProvider>
-            <LoadingProvider>
-              <AppBase />
-            </LoadingProvider>
-          </SnackbarProvider>
+          <ThemeProvider>
+            <SnackbarProvider>
+              <LoadingProvider>
+                <AppBase />
+              </LoadingProvider>
+            </SnackbarProvider>
+          </ThemeProvider>
         </RoomProvider>
       </CurrentUserProvider>
     </QueryClientProvider>
