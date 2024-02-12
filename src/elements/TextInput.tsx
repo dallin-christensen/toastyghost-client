@@ -25,7 +25,7 @@ export default function TextInput({
     <>
       <input
         autoFocus={autoFocus}
-        className={`rounded-md border-2 border-black p-[10px] w-full flex-1 font-bold shadow-brutal outline-none transition-all focus:translate-x-[3px] focus:translate-y-[3px] focus:shadow-none ${className}`}
+        className={`rounded-md border-2 border-black dark:border-white bg-white dark:bg-black dark:text-white p-[10px] w-full flex-1 font-bold shadow-brutal dark:shadow-brutaldark outline-none transition-all focus:translate-x-[3px] focus:translate-y-[3px] focus:shadow-none dark:transition-all dark:focus:translate-x-[3px] dark:focus:translate-y-[3px] dark:focus:shadow-none ${className}`}
         type="text"
         name="text"
         id="text"

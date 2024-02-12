@@ -6,9 +6,9 @@ type Props = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function IconButton({ children, onClick, ...rest }: Props) {
+export default function IconButton({ children, onClick, className, ...rest }: Props) {
   return (
-    <Button onClick={onClick} className="rounded-xl px-3 py-3" {...rest}>
+    <Button onClick={onClick} className={`rounded-xl px-3 py-3 ${className}`} {...rest}>
       {children}
     </Button>
   )

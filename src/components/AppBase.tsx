@@ -1,12 +1,10 @@
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import Landing from '../pages/Landing'
 import Room from '../pages/Room'
-import { useTheme } from '../context/ThemeContext'
 
 function AppBase() {
-  const { theme } = useTheme()
   return (
-    <div className={`min-h-screen bg-background ${theme}`}>
+    <div className={`min-h-screen bg-background dark:bg-backgrounddark`}>
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />

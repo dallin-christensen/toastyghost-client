@@ -32,7 +32,7 @@ export default function Snackbar({ message, open, onClose, type = 'success' }: S
   return (
     <div
       role="alert"
-      className={`absolute left-1/2 transform -translate-x-1/2 top-2 flex items-center justify-center rounded-md border-2 border-black p-5 px-8 font-bold shadow-brutal z-20 ${
+      className={`absolute left-1/2 transform -translate-x-1/2 top-2 flex items-center justify-center rounded-md border-2 border-black dark:border-white p-5 px-8 font-bold shadow-brutal dark:shadow-brutaldark z-20 ${
         typeClasses[type]
       } transition-all ease-out ${open ? 'scale-100 translate-y-0' : 'scale-0 -translate-y-8'}`}
     >

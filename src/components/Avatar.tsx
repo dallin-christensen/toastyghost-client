@@ -17,7 +17,7 @@ function Avatar({ participant: p }: AvatarProps) {
       )}
       <Tooltip
         elementToHover={
-          <div className="absolute bottom-0 rounded-full border-2 border-black bg-cover bg-center shadow-brutal transition-all duration-300 hover:scale-125 hover:rotate-12 hover:shadow-none hover:border-3">
+          <div className="absolute bottom-0 rounded-full border-2 border-black dark:border-white bg-cover bg-center shadow-brutal dark:shadow-brutaldark transition-all duration-300 hover:scale-125 hover:rotate-12 hover:shadow-none hover:border-3 dark:bg-white">
             <Avvvatars style="shape" value={p.handle} size={40} />
           </div>
         }

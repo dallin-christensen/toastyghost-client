@@ -9,6 +9,8 @@ export default {
     colors: {
       background: '#fff',
       backgroundsecondary: '#def',
+      backgrounddark: '#111',
+      backgroundsecondarydark: '#756A91',
       primary: '#B9A8E5',
       messageblue: '#9cf',
       danger: '#c62d09',
@@ -32,6 +34,7 @@ export default {
       boxShadow: {
         buttonfocus: '0 0 0 0.2rem rgba(0, 123, 255, 0.5)',
         brutal: '4px 4px 0px 0px rgba(0,0,0,1)',
+        brutaldark: '4px 4px 0px 0px white',
       },
       keyframes: {
         hoversmall: {

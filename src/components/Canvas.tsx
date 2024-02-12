@@ -10,11 +10,18 @@ function Canvas() {
   const { emitUpdateCoordinates } = useSocketEventEmissions()
 
   const onClick = (e: MouseEvent) => {
-    const actionPaper = document.querySelector('.action-paper')
+    let registerClick = true
+    const unregisteredElements = Array.from(document.querySelectorAll('.dont-register-avatar-movement'))
 
     const target = e.target as Node
 
-    if (actionPaper && actionPaper.contains(target)) return
+    unregisteredElements.forEach((unregistered) => {
+      if (unregistered.contains(target)) {
+        registerClick = false
+      }
+    })
+
+    if (!registerClick) return
 
     if (room?._id && currentUser?._id) {
       emitUpdateCoordinates({ roomId: room._id, participantId: currentUser._id, x: e.clientX, y: e.clientY })
