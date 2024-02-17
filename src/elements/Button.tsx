@@ -19,7 +19,7 @@ export default function Button({ children, onClick, className, ...rest }: Props)
     <button
       aria-label="Click to perform an action"
       onClick={onClick}
-      className={`flex cursor-pointer items-center rounded-md border-2 border-black text-black dark:text-white dark:border-white bg-primary px-10 py-3 font-bold shadow-brutal dark:shadow-brutaldark ${interactionClasses} ${darkInteractionClasses} ${className}`}
+      className={`flex cursor-pointer items-center rounded-md border-2 border-black text-black dark:border-white bg-primary px-10 py-3 font-bold shadow-brutal dark:shadow-brutaldark ${interactionClasses} ${darkInteractionClasses} ${className}`}
       {...rest}
     >
       {children}

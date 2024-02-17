@@ -26,7 +26,6 @@ function RoomFooterActions() {
 
   return (
     <>
-      {/* <Tooltip title="copy room link" placement="top" arrow> */}
       <Tooltip
         elementToHover={
           <div>
@@ -38,7 +37,6 @@ function RoomFooterActions() {
         tooltip="copy room link"
         positionClassName="left-1/2 transform -translate-x-1/2 bottom-[60px]"
       />
-      {/* <Tooltip title={isHost ? 'close room' : 'leave room'} placement="top" arrow> */}
       <Tooltip
         elementToHover={
           <div>

@@ -10,7 +10,7 @@ export default {
       background: '#fff',
       backgroundsecondary: '#def',
       backgrounddark: '#111',
-      backgroundsecondarydark: '#756A91',
+      backgroundsecondarydark: '#425E9E',
       primary: '#B9A8E5',
       messageblue: '#9cf',
       danger: '#c62d09',

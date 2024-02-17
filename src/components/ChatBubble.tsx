@@ -29,12 +29,12 @@ function ChatBubble({ message }: ChatBubbleProps) {
   return (
     <div className={`${displayText ? 'toastup' : 'toastdown'}`}>
       <div
-        className={`max-w-80 bg-messageblue px-4 py-3 leading-normal font-black text-black mx-0 my-auto -left-80 -right-80 w-max rounded-lg shadow-brutal dark:shadow-brutaldark border-2 border-black dark:border-white`}
+        className={`max-w-80 bg-messageblue dark:bg-backgroundsecondarydark px-4 py-3 leading-normal font-black text-black mx-0 my-auto -left-80 -right-80 w-max rounded-lg shadow-brutal dark:shadow-brutaldark border-2 border-black dark:border-white`}
       >
         <Text>{text}</Text>
       </div>
       <div
-        className={`absolute w-0 h-0 left-6 right-auto top-auto -bottom-2 border-[8px] border-solid border-t-messageblue border-r-transparent border-b-transparent border-l-messageblue -z-0`}
+        className={`absolute w-0 h-0 left-6 right-auto top-auto -bottom-2 border-[8px] border-solid border-t-messageblue dark:border-t-backgroundsecondarydark border-r-transparent border-b-transparent border-l-messageblue dark:border-l-backgroundsecondarydark -z-0`}
       ></div>
       <div
         className={`absolute w-0 h-0 left-[22px] right-auto top-auto -bottom-[13px] border-[10px] border-solid border-t-black dark:border-t-white border-r-transparent border-b-transparent border-l-black dark:border-l-white -z-10`}
